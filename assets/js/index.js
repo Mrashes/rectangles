@@ -222,7 +222,12 @@ function Shape(x, y, w, h, fill) {
   //init();
 
 init = () => {
-    var s = new CanvasState(document.getElementById('canvas'));
+    window.s = new CanvasState(document.getElementById('canvas'));
     s.addShape(new Shape(randomizeX(),randomizeY(),100,100, randomColor()))
-    // return s
 } 
+
+// clear = () => {
+//     console.log('hit this')
+//     s.clear();
+// }
+
