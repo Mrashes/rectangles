@@ -1,3 +1,4 @@
+//On double click, have 2 cases one for a double click on main rectangle (color) and on remove (remove)
 function dblClick (e) {
   var target = e.target;
   if (target.className.baseVal === 'myrect') {
@@ -8,18 +9,20 @@ function dblClick (e) {
   }
 }
 
+//This is a random color generator to place hold until I implement that color slider idea
 function randomColor () {
   let colors = ['red', 'green', 'blue', 'yellow', 'purple', 'black', 'aqua'];
   return colors[getRandomInt(0, colors.length)];
 }
 
+//Change the fill of a color based on random color
 function colorChange (target) {
   color = randomColor();
   var rect= document.getElementById(target.id);
   rect.setAttribute('fill', color);
 }
 
-//This function adds new rectangle
+//This function adds new rectangle to the canvas
 function newRectangle () {
   let canvas = document.getElementById('mycanvas');
   let children = canvas.children.length
@@ -43,12 +46,13 @@ function removeSingleRectangle (target) {
   document.getElementById(target.id).remove();
   document.getElementById("rect"+target.id[6]).remove();
   document.getElementById("resize"+target.id[6]).remove();
-  localManipulation(document.getElementById('currentProfile').textContent);
+  return localManipulation(document.getElementById('currentProfile').textContent);
 }
 
 function removeAllRectangles () {
   let canvas = document.getElementById('mycanvas');
-  return canvas.innerHTML = "";
+  canvas.innerHTML = "";
+  return localManipulation(document.getElementById('currentProfile').textContent)
 }
 
 

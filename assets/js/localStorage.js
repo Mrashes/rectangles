@@ -15,7 +15,14 @@ function localRestoreFrom (name) {
 //returns all profiles stored in the localstorage
 function localGetProfiles () {
     let profiles = localStorage.getItem("rectangleProfile");
-    return profiles.split(' ');
+    if (profiles === null) {
+        console.log(Error)
+        return
+    }
+    else {
+        return profiles.split(' ');
+    }
+
 }
 
 //adding new profiles into the localstorage.  If there isn't one already the space is ommitted

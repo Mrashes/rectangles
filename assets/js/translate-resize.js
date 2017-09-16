@@ -2,6 +2,7 @@
 document.addEventListener('mousedown', mousedown, false);
 
 var mousedown_points;
+//On mouse down check what the mouse down is on
 function mousedown (e) {
 
     window.target = e.target;
@@ -23,6 +24,7 @@ function mousedown (e) {
     }
 }
 
+//when you move the mouse on resize transform the main rectangle based on movement
 function mousemove (e) {
     var current_points = {
         x: e.clientX,
@@ -49,6 +51,7 @@ function mousemove (e) {
 
 }
 
+//The Resize icon doesn't transform but translates so change the positioning
 function updateResizeIcon (dx,dy){
     var resize= document.getElementById(window.target.id);
     var x=parseFloat(resize.getAttribute('x'));
@@ -61,13 +64,14 @@ function updateResizeIcon (dx,dy){
     resize.setAttribute('y',y);
 }
 
+//When you lift up on the mouse remove the listeners for mouse movement
 function mouseup (e) {
     localManipulation(document.getElementById('currentProfile').textContent);
     document.removeEventListener('mouseup', mouseup, false);
     document.removeEventListener('mousemove', mousemove, false);
 }
 
-
+//These are the same but translating only
 function mousemoveTranslate (e) {
     var current_points = {
         x: e.clientX,
