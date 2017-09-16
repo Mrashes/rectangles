@@ -24,9 +24,9 @@ newRectangle = () => {
   let canvas = document.getElementById('mycanvas');
   let children = canvas.children.length
 
-  return canvas.innerHTML += `<rect id="remove${children}" class="remove" fill="orange" x="90" y="60" width="20" height="20" />
-  <rect id="rect${children}" class="myrect" fill="black" x="100" y="70" width="100" height="100" />
-  <rect id="resize${children}" class="resize" fill="red" x="190" y="160" width="20" height="20" />`
+  return canvas.innerHTML += `<rect id="remove${children/3}" class="remove" fill="orange" x="90" y="60" width="20" height="20" />
+  <rect id="rect${children/3}" class="myrect" fill="black" x="100" y="70" width="100" height="100" />
+  <rect id="resize${children/3}" class="resize" fill="red" x="190" y="160" width="20" height="20" />`
 }
 
 //Stackoverflow answer for removeing by id  https://stackoverflow.com/questions/3387427/remove-element-by-id
