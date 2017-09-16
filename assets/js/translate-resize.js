@@ -2,7 +2,7 @@
 document.addEventListener('mousedown', mousedown, false);
 
 var mousedown_points;
-function mousedown(e) {
+function mousedown (e) {
 
     window.target = e.target;
     if (target.className.baseVal === 'resize') {
@@ -23,7 +23,7 @@ function mousedown(e) {
     }
 }
 
-function mousemove(e) {
+function mousemove (e) {
     var current_points = {
         x: e.clientX,
         y: e.clientY
@@ -49,7 +49,7 @@ function mousemove(e) {
 
 }
 
-function updateResizeIcon(dx,dy){
+function updateResizeIcon (dx,dy){
     var resize= document.getElementById(window.target.id);
     var x=parseFloat(resize.getAttribute('x'));
     var y=parseFloat(resize.getAttribute('y'));
@@ -61,13 +61,13 @@ function updateResizeIcon(dx,dy){
     resize.setAttribute('y',y);
 }
 
-function mouseup(e) {
+function mouseup (e) {
   document.removeEventListener('mouseup', mouseup, false);
   document.removeEventListener('mousemove', mousemove, false);
 }
 
 
-mousemoveTranslate = (e) => {
+function mousemoveTranslate (e) {
     var current_points = {
         x: e.clientX,
         y: e.clientY
@@ -91,7 +91,7 @@ mousemoveTranslate = (e) => {
     updateResizeIconTranslate(dx,dy);
 }
 
-function updateResizeIconTranslate(dx,dy){
+function updateResizeIconTranslate (dx,dy){
     var resize= document.getElementById("resize"+window.target.id[4]);
     var x=parseFloat(resize.getAttribute('x'));
     var y=parseFloat(resize.getAttribute('y'));
@@ -105,7 +105,7 @@ function updateResizeIconTranslate(dx,dy){
     updateRemoveIconTranslate(dx,dy)
 }
 
-function updateRemoveIconTranslate(dx,dy) {
+function updateRemoveIconTranslate (dx,dy) {
     var remove= document.getElementById("remove"+window.target.id[4]);
     var x=parseFloat(remove.getAttribute('x'));
     var y=parseFloat(remove.getAttribute('y'));
@@ -117,7 +117,7 @@ function updateRemoveIconTranslate(dx,dy) {
     remove.setAttribute('y',y);
 }
 
-function mouseupTranslate(e) {
+function mouseupTranslate (e) {
   document.removeEventListener('mouseup', mouseupTranslate, false);
   document.removeEventListener('mousemove', mousemoveTranslate, false);
 }
