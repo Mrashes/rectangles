@@ -6,21 +6,32 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Rectangle Adventure</title>
     <style>
-        .canvas {
-            border: 2px solid black;
-        }
+    .unselectable {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
     </style>
 </head>
 <body>
     <div style="border: 2px solid;width: 800px;">
         <svg id="mycanvas" width="800px" height="500px" version="1.1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-            <rect id="myrect" fill="black" x="100" y="70" width="100" height="100" />
-            <rect id="resize" fill="red" x="190" y="160" width="20" height="20" />
+            <rect id="0" class="myrect" fill="black" x="100" y="70" width="100" height="100" />
+            <rect id="1" class="resize" fill="red" x="190" y="160" width="20" height="20" />
         </svg>
     </div>
-
+    <div class="unselectable">
+        <button onclick="removeAllRectangles()">Clear all Rectangles</button>
+        <button onclick="newRectangle()">Replace Rectangle</button>    
+    </div>
 
     <script src="./assets/js/index.js"></script>
+    <script src="./assets/js/translate-resize.js"></script>
+    <script src="./assets/js/remove-replace.js"></script>
+    <script src="./assets/js/color.js"></script>
 
 </body>
 </html>
