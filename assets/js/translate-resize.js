@@ -1,4 +1,3 @@
-
 //This is the svg shape Resizer and translator
 document.addEventListener('mousedown', mousedown, false);
 

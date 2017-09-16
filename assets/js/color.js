@@ -5,9 +5,9 @@ randomColor = () => {
 
 colorChange = (e) => {
   var target = e.target;
-  if (target.id === 'myrect') {
+  if (target.className.baseVal === 'myrect') {
     color = randomColor();
-    var rect= document.getElementById('myrect');
+    var rect= document.getElementById(target.id);
     rect.setAttribute('fill', color);
   }
 }
