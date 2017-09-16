@@ -62,8 +62,9 @@ function updateResizeIcon (dx,dy){
 }
 
 function mouseup (e) {
-  document.removeEventListener('mouseup', mouseup, false);
-  document.removeEventListener('mousemove', mousemove, false);
+    localManipulation(document.getElementById('currentProfile').textContent);
+    document.removeEventListener('mouseup', mouseup, false);
+    document.removeEventListener('mousemove', mousemove, false);
 }
 
 
@@ -118,6 +119,7 @@ function updateRemoveIconTranslate (dx,dy) {
 }
 
 function mouseupTranslate (e) {
-  document.removeEventListener('mouseup', mouseupTranslate, false);
-  document.removeEventListener('mousemove', mousemoveTranslate, false);
+    localManipulation(document.getElementById('currentProfile').textContent);
+    document.removeEventListener('mouseup', mouseupTranslate, false);
+    document.removeEventListener('mousemove', mousemoveTranslate, false);
 }

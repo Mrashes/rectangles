@@ -35,20 +35,15 @@ function localProfilePost (newProfile) {
 
 //adding html into a rectangleProfilename local storage area
 function localManipulation (Profilename) {
-    let profiles = {};
-
     let canvas = document.getElementById('mycanvas');
     let children = canvas.children.length;
-    
     let html = canvas.innerHTML
-    profiles.Profilename = html;
-
-    return localStorage.setItem("rectangle"+Profilename, JSON.stringify(profiles));
+    return localStorage.setItem("rectangle"+Profilename, html);
 }
 
 function localLoadHTML (Profilename) {
     let canvas = document.getElementById('mycanvas');
-    let html = JSON.parse(localStorage.getItem("rectangle" + Profilename))
-    canvas.innerHTML = html.Profilename;
+    let html = localStorage.getItem("rectangle" + Profilename);
+    canvas.innerHTML = html;
     return canvas;
 }

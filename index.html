@@ -17,11 +17,11 @@
     </style>
 </head>
 <body>
-    <div>
+    <div class="unselectable">
         <input type="text" name="profile" id="profileInput">
         <input type="submit" id="profileSubmit">
     </div>
-    <div>
+    <div class="unselectable">
         <span>Current Profile:</span>
         <span id="currentProfile">Dummy Data</span>
     </div>
@@ -34,13 +34,9 @@
     </div>
     <div class="unselectable">
         <button onclick="removeAllRectangles()">Clear all Rectangles</button>
-        <button onclick="newRectangle()">New Rectangle</button>    
-        <button onclick="localSave('html')">Save</button>
-        <button onclick="localRestoreFrom('html')">Restore</button>
+        <button onclick="newRectangle()">New Rectangle</button> 
     </div>
-    <div id="profileList">
-
-    </div>
+    <div id="profileList" class="unselectable"></div>
 
     <script src="./assets/js/index.js"></script>
     <script src="./assets/js/translate-resize.js"></script>

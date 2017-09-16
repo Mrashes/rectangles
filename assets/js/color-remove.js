@@ -23,8 +23,8 @@ function colorChange (target) {
 function newRectangle () {
   let canvas = document.getElementById('mycanvas');
   let children = canvas.children.length
-
-  return canvas.innerHTML += '<rect id="remove'+String(children/3)+'" class="remove" fill="orange" x="90" y="60" width="20" height="20" /> \n <rect id="rect'+String(children/3)+'" class="myrect" fill="black" x="100" y="70" width="100" height="100" /> \n <rect id="resize'+String(children/3)+'" class="resize" fill="red" x="190" y="160" width="20" height="20" />'
+  canvas.innerHTML += '<rect id="remove'+String(children/3)+'" class="remove" fill="orange" x="90" y="60" width="20" height="20" /> \n <rect id="rect'+String(children/3)+'" class="myrect" fill="black" x="100" y="70" width="100" height="100" /> \n <rect id="resize'+String(children/3)+'" class="resize" fill="red" x="190" y="160" width="20" height="20" />'
+  return localManipulation(document.getElementById('currentProfile').textContent)
 }
 
 //Stackoverflow answer for removing by id  https://stackoverflow.com/questions/3387427/remove-element-by-id
@@ -40,9 +40,10 @@ NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
 }
 
 function removeSingleRectangle (target) {
-  document.getElementById(target.id).remove()
-  document.getElementById("rect"+target.id[6]).remove()
-  document.getElementById("resize"+target.id[6]).remove()
+  document.getElementById(target.id).remove();
+  document.getElementById("rect"+target.id[6]).remove();
+  document.getElementById("resize"+target.id[6]).remove();
+  localManipulation(document.getElementById('currentProfile').textContent);
 }
 
 function removeAllRectangles () {
