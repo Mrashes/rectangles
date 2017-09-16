@@ -5,7 +5,7 @@ document.addEventListener('mousedown', mousedown, false);
 var mousedown_points;
 function mousedown(e) {
 
-    var target = e.target;
+    window.target = e.target;
     console.log(target.className.baseVal)
     if (target.className.baseVal === 'resize') {
         mousedown_points = {
@@ -30,36 +30,30 @@ function mousemove(e) {
         x: e.clientX,
         y: e.clientY
     }
+    // console.log("rect"+String(parseInt(window.target.id)-parseInt(1)))
+    console.log(String(parseInt(window.target.id[4])-parseInt(1)))
 
-    var target = e.target;
+    var rect= document.getElementById("rect"+String(parseInt(window.target.id[4])-parseInt(1)));
+    var w=parseFloat(rect.getAttribute('width'));
+    var h=parseFloat(rect.getAttribute('height'));
 
-    if(target.id == 'mycanvas') {
+    var dx=current_points.x-mousedown_points.x;
+    var dy=current_points.y-mousedown_points.y;
 
-    }
+    w+=dx;
+    h+=dy;
 
-    else {
-        var rect= document.getElementById("rect"+target.id-1);
-        var w=parseFloat(rect.getAttribute('width'));
-        var h=parseFloat(rect.getAttribute('height'));
-    
-        var dx=current_points.x-mousedown_points.x;
-        var dy=current_points.y-mousedown_points.y;
-    
-        w+=dx;
-        h+=dy;
-    
-        rect.setAttribute('width',w);
-        rect.setAttribute('height',h);
-    
-        mousedown_points=current_points;
-    
-        updateResizeIcon(dx,dy,target);        
-    }
+    rect.setAttribute('width',w);
+    rect.setAttribute('height',h);
+
+    mousedown_points=current_points;
+
+    updateResizeIcon(dx,dy);        
 
 }
 
-function updateResizeIcon(dx,dy,target){
-    var resize= document.getElementById(target.id);
+function updateResizeIcon(dx,dy){
+    var resize= document.getElementById(window.target.id);
     var x=parseFloat(resize.getAttribute('x'));
     var y=parseFloat(resize.getAttribute('y'));
 
