@@ -2,8 +2,8 @@ function readForm () {
     let inputValue = document.getElementById("profileInput").value;
     document.getElementById('currentProfile').textContent = inputValue;
     clearInput();
-    profilePostLocal(inputValue);
-    localStorageManipulation(inputValue);
+    localProfilePost(inputValue);
+    localManipulation(inputValue);
 }
 
 function clearInput () {
@@ -11,7 +11,7 @@ function clearInput () {
 }
 
 function populateProfiles () {
-    localProfiles = getLocalProfiles();
+    localProfiles = localGetProfiles();
     let profileDOM = document.getElementById('profileList');
     for (i=0; i<localProfiles.length; i++) {
         var element = document.createElement('p');

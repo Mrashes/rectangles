@@ -1,24 +1,24 @@
 //This currently works for just one instance
-function saveToLocalStorage (name) {
+function localSave (name) {
     let canvas = document.getElementById('mycanvas');
     let html = canvas.innerHTML;
     return localStorage.setItem(name, html);
 }
 
-function restoreFromLocal (name) {
+function localRestoreFrom (name) {
     let canvas = document.getElementById('mycanvas');
     canvas.innerHTML = localStorage.getItem(name);
     return canvas;
 }
 
 //returns all profiles stored in the localstorage
-function getLocalProfiles () {
+function localGetProfiles () {
     let profiles = localStorage.getItem("rectangleProfile");
     return profiles.split(' ');
 }
 
 //adding new profiles into the localstorage.  If there isn't one already the space is ommitted
-function profilePostLocal (newProfile) {
+function localProfilePost (newProfile) {
     let currentProfiles = localStorage.getItem("rectangleProfile");
     if (currentProfiles === null) {
         currentProfiles = newProfile
@@ -33,8 +33,7 @@ function profilePostLocal (newProfile) {
 }
 
 //adding html into a rectangleProfilename local storage area
-
-function localStorageManipulation (Profilename) {
+function localManipulation (Profilename) {
     let profiles = {};
 
     let canvas = document.getElementById('mycanvas');
@@ -44,4 +43,11 @@ function localStorageManipulation (Profilename) {
     profiles.Profilename = html;
 
     return localStorage.setItem("rectangle"+Profilename, JSON.stringify(profiles));
+}
+
+function localLoadHTML (Profilename) {
+    let canvas = document.getElementById('mycanvas');
+    let html = JSON.parse(localStorage.getItem("rectangle" + Profilename))
+    canvas.innerHTML = html.Profilename;
+    return canvas;
 }
