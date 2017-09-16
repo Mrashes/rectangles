@@ -30,7 +30,7 @@ function mousemove(e) {
     }
     // console.log("rect"+String(parseInt(window.target.id)-parseInt(1)))
 
-    var rect= document.getElementById("rect"+String(parseInt(window.target.id[4])-parseInt(1)));
+    var rect= document.getElementById("rect"+window.target.id[6]);
     var w=parseFloat(rect.getAttribute('width'));
     var h=parseFloat(rect.getAttribute('height'));
 
@@ -73,6 +73,7 @@ mousemoveTranslate = (e) => {
         y: e.clientY
     }
 
+    console.log(window.target.id)
     var rect= document.getElementById(window.target.id);
     var x=parseFloat(rect.getAttribute('x'));
     var y=parseFloat(rect.getAttribute('y'));
@@ -92,7 +93,7 @@ mousemoveTranslate = (e) => {
 }
 
 function updateResizeIconTranslate(dx,dy){
-    var resize= document.getElementById("rect"+String(parseInt(window.target.id[4])+parseInt(1)));
+    var resize= document.getElementById("resize"+window.target.id[4]);
     var x=parseFloat(resize.getAttribute('x'));
     var y=parseFloat(resize.getAttribute('y'));
 
