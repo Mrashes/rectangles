@@ -11,12 +11,13 @@ function restoreFromLocal (name) {
     return canvas;
 }
 
-//This is me testing a profile interface
+//returns all profiles stored in the localstorage
 function getLocalProfiles () {
     let profiles = localStorage.getItem("rectangleProfile");
     return profiles.split(' ');
 }
 
+//adding new profiles into the localstorage.  If there isn't one already the space is ommitted
 function profilePostLocal (newProfile) {
     let currentProfiles = localStorage.getItem("rectangleProfile");
     if (currentProfiles === null) {
@@ -31,7 +32,7 @@ function profilePostLocal (newProfile) {
     }
 }
 
-//This is a new form of adding something into rectangles
+//adding html into a rectangleProfilename local storage area
 
 function localStorageManipulation (Profilename) {
     let profiles = {};
