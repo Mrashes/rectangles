@@ -6,7 +6,6 @@ var mousedown_points;
 function mousedown(e) {
 
     window.target = e.target;
-    console.log(target.className.baseVal)
     if (target.className.baseVal === 'resize') {
         mousedown_points = {
             x: e.clientX,
@@ -15,14 +14,14 @@ function mousedown(e) {
         document.addEventListener('mouseup', mouseup, false);
         document.addEventListener('mousemove', mousemove, false);
     }
-    // else if (target.className.baseVal === 'myrect') {
-    //   mousedown_points = {
-    //     x: e.clientX,
-    //     y: e.clientY
-    // }
-    // document.addEventListener('mouseup', mouseupTranslate, false);
-    // document.addEventListener('mousemove', mousemoveTranslate, false);
-    // }
+    else if (target.className.baseVal === 'myrect') {
+      mousedown_points = {
+        x: e.clientX,
+        y: e.clientY
+    }
+    document.addEventListener('mouseup', mouseupTranslate, false);
+    document.addEventListener('mousemove', mousemoveTranslate, false);
+    }
 }
 
 function mousemove(e) {
@@ -31,7 +30,6 @@ function mousemove(e) {
         y: e.clientY
     }
     // console.log("rect"+String(parseInt(window.target.id)-parseInt(1)))
-    console.log(String(parseInt(window.target.id[4])-parseInt(1)))
 
     var rect= document.getElementById("rect"+String(parseInt(window.target.id[4])-parseInt(1)));
     var w=parseFloat(rect.getAttribute('width'));
@@ -70,31 +68,43 @@ function mouseup(e) {
 }
 
 
-// mousemoveTranslate = (e) => {
-//     var current_points = {
-//         x: e.clientX,
-//         y: e.clientY
-//     }
+mousemoveTranslate = (e) => {
+    var current_points = {
+        x: e.clientX,
+        y: e.clientY
+    }
 
-//     var rect= document.getElementById('myrect');
-//     var x=parseFloat(rect.getAttribute('x'));
-//     var y=parseFloat(rect.getAttribute('y'));
+    var rect= document.getElementById(window.target.id);
+    var x=parseFloat(rect.getAttribute('x'));
+    var y=parseFloat(rect.getAttribute('y'));
 
-//     var dx=current_points.x-mousedown_points.x;
-//     var dy=current_points.y-mousedown_points.y;
+    var dx=current_points.x-mousedown_points.x;
+    var dy=current_points.y-mousedown_points.y;
 
-//     x+=dx;
-//     y+=dy;
+    x+=dx;
+    y+=dy;
 
-//     rect.setAttribute('x',x);
-//     rect.setAttribute('y',y);
+    rect.setAttribute('x',x);
+    rect.setAttribute('y',y);
 
-//     mousedown_points=current_points;
+    mousedown_points=current_points;
 
-//     updateResizeIcon(dx,dy);
-// }
+    updateResizeIconTranslate(dx,dy);
+}
 
-// function mouseupTranslate(e) {
-//   document.removeEventListener('mouseup', mouseupTranslate, false);
-//   document.removeEventListener('mousemove', mousemoveTranslate, false);
-// }
+function updateResizeIconTranslate(dx,dy){
+    var resize= document.getElementById("rect"+String(parseInt(window.target.id[4])+parseInt(1)));
+    var x=parseFloat(resize.getAttribute('x'));
+    var y=parseFloat(resize.getAttribute('y'));
+
+    x+=dx;
+    y+=dy;
+
+    resize.setAttribute('x',x);
+    resize.setAttribute('y',y);
+}
+
+function mouseupTranslate(e) {
+  document.removeEventListener('mouseup', mouseupTranslate, false);
+  document.removeEventListener('mousemove', mousemoveTranslate, false);
+}

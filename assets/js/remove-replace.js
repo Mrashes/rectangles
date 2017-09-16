@@ -21,7 +21,7 @@ newRectangle = () => {
     let canvas = document.getElementById('mycanvas');
     let children = canvas.children.length
 
-    return canvas.innerHTML = `<rect id="rect${children}" class="myrect" fill="black" x="100" y="70" width="100" height="100" />
+    return canvas.innerHTML += `<rect id="rect${children}" class="myrect" fill="black" x="100" y="70" width="100" height="100" />
     <rect id="rect${children+1}" class="resize" fill="red" x="190" y="160" width="20" height="20" />`
   }
   
