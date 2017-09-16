@@ -7,6 +7,7 @@ function localSave (name) {
 
 function localRestoreFrom (name) {
     let canvas = document.getElementById('mycanvas');
+    console.log(localStorage.getItem(name))
     canvas.innerHTML = localStorage.getItem(name);
     return canvas;
 }
