@@ -73,7 +73,6 @@ mousemoveTranslate = (e) => {
         y: e.clientY
     }
 
-    console.log(window.target.id)
     var rect= document.getElementById(window.target.id);
     var x=parseFloat(rect.getAttribute('x'));
     var y=parseFloat(rect.getAttribute('y'));
@@ -102,6 +101,20 @@ function updateResizeIconTranslate(dx,dy){
 
     resize.setAttribute('x',x);
     resize.setAttribute('y',y);
+
+    updateRemoveIconTranslate(dx,dy)
+}
+
+function updateRemoveIconTranslate(dx,dy) {
+    var remove= document.getElementById("remove"+window.target.id[4]);
+    var x=parseFloat(remove.getAttribute('x'));
+    var y=parseFloat(remove.getAttribute('y'));
+
+    x+=dx;
+    y+=dy;
+
+    remove.setAttribute('x',x);
+    remove.setAttribute('y',y);
 }
 
 function mouseupTranslate(e) {
