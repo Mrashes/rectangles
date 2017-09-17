@@ -9,13 +9,9 @@
     <link rel="stylesheet" href="./assets/css/main.css">
 </head>
 <body>
-    <div class="unselectable profileInputSubmit">
-        <input type="text" name="profile" id="profileInput">
-        <input type="submit" id="profileSubmit" value="Create New Profile" class="btn">
-        <div class="currentProfileGroup">
+    <div class="currentProfileGroup">
             <span class="currentProfile">Current Profile:</span>
             <span id="currentProfile" class="currentProfileName"> </span>
-        </div>
     </div>
     <div class="flex">
         <div style="border: 2px solid;width: 800px;" class="marginAutoLeft">
@@ -25,13 +21,23 @@
                 <rect id="resize0" class="resize" fill="red" x="190" y="160" width="20" height="20" />
             </svg>
         </div>
-        <div class="marginAutoRight">
-            <div class="unselectable profileList">
-                <button class="block btn" onclick="removeAllRectangles()">Clear all Rectangles</button>
-                <button class="block btn marginTop" onclick="newRectangle()">New Rectangle</button> 
+        <div>
+            <div>
+                <div class="unselectable profileInputSubmit">
+                    <input type="text" name="profile" id="profileInput">
+                    <input type="submit" id="profileSubmit" value="Create New Profile" class="btn">
+                </div>
+                <div class="unselectable profileList">
+                    <button class="block btn" onclick="removeAllRectangles()">Clear all Rectangles</button>
+                    <button class="block btn marginTop" onclick="newRectangle()">New Rectangle</button> 
+                </div>
             </div>
-            <div id="profileList" class="profileList unselectable"></div>    
+
+            <div class="marginAutoRight">
+                <div id="profileList" class="profileList unselectable"></div>    
+            </div>
         </div>
+
     </div>
 
     <div class="flex unselectable instructions marginTop">
