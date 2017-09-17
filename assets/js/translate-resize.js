@@ -42,13 +42,19 @@ function mousemove (e) {
     w+=dx;
     h+=dy;
 
-    rect.setAttribute('width',w);
-    rect.setAttribute('height',h);
+    
+    if (w<=0 || h<=0) {
+        return console.log('Issue with negative numbers')
+    }
 
-    mousedown_points=current_points;
-
-    updateResizeIcon(dx,dy);        
-
+    else {
+        rect.setAttribute('width',w);
+        rect.setAttribute('height',h);
+    
+        mousedown_points=current_points;
+    
+        updateResizeIcon(dx,dy);    
+    }   
 }
 
 //The Resize icon doesn't transform but translates so change the positioning
@@ -87,8 +93,6 @@ function mousemoveTranslate (e) {
 
     x+=dx;
     y+=dy;
-
-    // if (x<0 || y<0) {}
 
     rect.setAttribute('x',x);
     rect.setAttribute('y',y);
