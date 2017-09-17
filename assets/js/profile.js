@@ -25,18 +25,23 @@ function populateProfiles () {
     }
     else {
         for (i=0; i<localProfiles.length; i++) {
+            var div = document.createElement('div')
+            div.className = "flex marginTop"
             //makes p tags with names of profiles
             var element = document.createElement('p');
             element.textContent = localProfiles[i];
             element.id = localProfiles[i];
-            // element.className = 'example';
-            profileDOM.appendChild(element);
+            element.className = "finger inline btn"
+            div.appendChild(element);
+
             //makes button
             var removeButton = document.createElement('img');
-            // removeButton.textContent = "remove "+localProfiles[i];
             removeButton.src = './assets/img/trashcan.svg'
             removeButton.id = "remove"+localProfiles[i];
-            profileDOM.appendChild(removeButton);
+            removeButton.className = "finger"
+            div.appendChild(removeButton);
+
+            profileDOM.appendChild(div)
         };
         return;
     }
@@ -51,7 +56,7 @@ function setCurrentProfile (targetID) {
 //Profile event from the listener
 function profileEvents (event) {
     //On BUTTON click remove it
-    if (event.target.tagName == "BUTTON") {
+    if (event.target.tagName == "IMG") {
         removeProfile(event.target.id.split('remove')[1]);
         return;
     }

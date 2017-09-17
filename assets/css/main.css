@@ -1,3 +1,21 @@
+* {
+    font-family: Verdana;    
+}
+
+.currentProfile {
+    font-size: 2em;
+    display: inline-block;
+}
+
+.currentProfileName {
+    font-size: 2em;
+}
+
+.currentProfileGroup {
+    margin: auto;
+    width: 25em;
+}
+
 .unselectable {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -15,6 +33,53 @@
     display:block;
 }
 
+.inline {
+    display:inline;
+}
+
 .profileList {
     margin-left: 25px;
+}
+
+.finger {
+    cursor: pointer;
+}
+
+.marginTop {
+    margin-top:25px
+}
+
+.profileInputSubmit {
+    width: 35em;
+    margin: 0 auto;
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+.marginAutoRight {
+    margin-right:auto;
+}
+
+.marginAutoLeft {
+    margin-left:auto;
+}
+
+.btn{
+    /* display: inline-block; */
+    border:1px solid #BFBFBF;
+    color: #8C8C8C;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    font-family: Verdana;
+    width: auto;
+    height: auto;
+    font-size: 1em;
+    padding: 10px 40px;
+    background-color: #FCFAF9;
+}
+.btn:hover, .btn:active{
+    border:1px solid #BFBFBF;
+    color: #8C8C8C;
+    background-color: #E8E8E8;
 }
