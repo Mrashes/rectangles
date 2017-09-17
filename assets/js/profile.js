@@ -9,6 +9,12 @@ function readForm () {
     return inputValue;
 }
 
+function removeBlankInArray (array) {
+    array.splice(0,1);
+    localStorage.setItem("rectangleProfile", array.join(" "));
+    return populateProfiles();
+}
+
 //clears input form
 function clearInput () {
     document.getElementById("profileInput").value = "";
@@ -21,7 +27,15 @@ function populateProfiles () {
     let profileDOM = document.getElementById('profileList');
     profileDOM.innerHTML = "";
     if (localProfiles === undefined) {
-        return
+        return;
+    }
+    else if (localProfiles[0] === "" && localProfiles.length>1) {
+        setCurrentProfile("No Profile Selected");
+        removeBlankInArray(localProfiles);
+        return;
+    }
+    else if (localProfiles[0] === "") {
+        return setCurrentProfile("No Profile Selected");
     }
     else {
         for (i=0; i<localProfiles.length; i++) {
@@ -64,21 +78,22 @@ function profileEvents (event) {
     else if (event.target.tagName == "P"){
         let targetID = event.target.id;
         localLoadHTML(targetID);
-        setCurrentProfile(targetID)
+        setCurrentProfile(targetID);
     }
 
 }
 
 function init () {
     if (localStorage.getItem("rectangleProfile") === null) {
-        return
+        populateProfiles();
+        return;
     }
     else {
         let profileList = localStorage.getItem("rectangleProfile").split(" ")
         localLoadHTML(profileList[0]);
-        setCurrentProfile(profileList[0])
-        populateProfiles()
-        return
+        setCurrentProfile(profileList[0]);
+        populateProfiles();
+        return;
     }
 
 }
@@ -90,7 +105,7 @@ function removeProfile (targetProfile) {
     let profileIndex = profileList.indexOf(targetProfile);
     profileList.splice(profileIndex, 1);
     localStorage.setItem("rectangleProfile", profileList.join(' '));
-    populateProfiles()
+    populateProfiles();
 
     // localStorage.getItem("rectangle" + Profilename)
 }
@@ -99,5 +114,8 @@ function removeProfile (targetProfile) {
 window.onload = function () {
     document.getElementById("profileSubmit").onclick=readForm;
     document.getElementById("profileList").onclick=profileEvents;
+    document.getElementById("removeRectangles").onclick=removeAllRectangles;
+    document.getElementById("newRectangle").onclick=newRectangle;
+
     init();
 };
