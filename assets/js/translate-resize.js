@@ -54,14 +54,14 @@ function mousemove (e) {
 //The Resize icon doesn't transform but translates so change the positioning
 function updateResizeIcon (dx,dy){
     var resize= document.getElementById(window.target.id);
-    var x=parseFloat(resize.getAttribute('x'));
-    var y=parseFloat(resize.getAttribute('y'));
+    var x=parseFloat(resize.getAttribute('cx'));
+    var y=parseFloat(resize.getAttribute('cy'));
 
     x+=dx;
     y+=dy;
 
-    resize.setAttribute('x',x);
-    resize.setAttribute('y',y);
+    resize.setAttribute('cx',x);
+    resize.setAttribute('cy',y);
 }
 
 //When you lift up on the mouse remove the listeners for mouse movement
@@ -88,6 +88,8 @@ function mousemoveTranslate (e) {
     x+=dx;
     y+=dy;
 
+    // if (x<0 || y<0) {}
+
     rect.setAttribute('x',x);
     rect.setAttribute('y',y);
 
@@ -98,28 +100,28 @@ function mousemoveTranslate (e) {
 
 function updateResizeIconTranslate (dx,dy){
     var resize= document.getElementById("resize"+window.target.id[4]);
-    var x=parseFloat(resize.getAttribute('x'));
-    var y=parseFloat(resize.getAttribute('y'));
+    var x=parseFloat(resize.getAttribute('cx'));
+    var y=parseFloat(resize.getAttribute('cy'));
 
     x+=dx;
     y+=dy;
 
-    resize.setAttribute('x',x);
-    resize.setAttribute('y',y);
+    resize.setAttribute('cx',x);
+    resize.setAttribute('cy',y);
 
     updateRemoveIconTranslate(dx,dy)
 }
 
 function updateRemoveIconTranslate (dx,dy) {
     var remove= document.getElementById("remove"+window.target.id[4]);
-    var x=parseFloat(remove.getAttribute('x'));
-    var y=parseFloat(remove.getAttribute('y'));
+    var x=parseFloat(remove.getAttribute('cx'));
+    var y=parseFloat(remove.getAttribute('cy'));
 
     x+=dx;
     y+=dy;
 
-    remove.setAttribute('x',x);
-    remove.setAttribute('y',y);
+    remove.setAttribute('cx',x);
+    remove.setAttribute('cy',y);
 }
 
 function mouseupTranslate (e) {

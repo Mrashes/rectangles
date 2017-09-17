@@ -26,7 +26,7 @@ function colorChange (target) {
 function newRectangle () {
   let canvas = document.getElementById('mycanvas');
   let children = canvas.children.length
-  canvas.innerHTML += '<rect id="remove'+String(children/3)+'" class="remove" fill="orange" x="90" y="60" width="20" height="20" /> \n <rect id="rect'+String(children/3)+'" class="myrect" fill="black" x="100" y="70" width="100" height="100" /> \n <rect id="resize'+String(children/3)+'" class="resize" fill="red" x="190" y="160" width="20" height="20" />'
+  canvas.innerHTML += '<circle id="remove'+String(children/3)+'" class="remove" fill="#A09DA1" cx="100" cy="70" r="10"/> \n <rect id="rect'+String(children/3)+'" class="myrect" fill="black" x="100" y="70" width="100" height="100" /> \n <circle id="resize'+String(children/3)+'" class="resize" fill="#F5805D" cx="200" cy="170" r="10"/>'
   return localManipulation(document.getElementById('currentProfile').textContent)
 }
 
