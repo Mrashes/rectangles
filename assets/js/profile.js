@@ -26,19 +26,19 @@ function populateProfiles () {
     else {
         for (i=0; i<localProfiles.length; i++) {
             var div = document.createElement('div')
-            div.className = "flex marginTop"
+            div.className = "flex profileName"
             //makes p tags with names of profiles
             var element = document.createElement('p');
             element.textContent = localProfiles[i];
             element.id = localProfiles[i];
-            element.className = "finger inline btn"
+            element.className = "btn profileBtn"
             div.appendChild(element);
 
             //makes button
             var removeButton = document.createElement('img');
             removeButton.src = './assets/img/trashcan.svg'
             removeButton.id = "remove"+localProfiles[i];
-            removeButton.className = "finger"
+            removeButton.className = "trashcan"
             div.appendChild(removeButton);
 
             profileDOM.appendChild(div)

@@ -1,19 +1,5 @@
-* {
-    font-family: Verdana;    
-}
-
-.currentProfile {
-    font-size: 2em;
-    display: inline-block;
-}
-
-.currentProfileName {
-    font-size: 2em;
-}
-
-.currentProfileGroup {
-    margin: auto;
-    width: 25em;
+body {
+    background-color: #DADCE0;
 }
 
 .unselectable {
@@ -33,60 +19,105 @@
     display:block;
 }
 
-.inline {
-    display:inline;
+.btnGroupHead {
+    margin: 1em;
+    margin-top: 3em;
+    font-family: 'Didact Gothic', sans-serif;
 }
 
-.profileList {
-    margin-left: 25px;
+.btnGroup1 {
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    background-color:#F5805D;
+    padding:1em;
 }
 
-.finger {
-    cursor: pointer;
-}
-
-.profileInputSubmit {
-    width: 35em;
-    margin: 0 auto;
-    margin-bottom: 1em;
-    margin-top: 1em;
-}
-
-.marginAutoRight {
-    margin-right:auto;
-}
-
-.marginAutoLeft {
-    margin-left:auto;
-}
-
-.instructions {
-    width: 800px;
-    margin: auto;
-}
-
-
-.marginTop {
-    margin-top:25px
+.btnGroup1Margin {
+    margin: 1em auto;
 }
 
 .btn{
     /* display: inline-block; */
     border:1px solid #BFBFBF;
-    color: #8C8C8C;
-    border-radius: 30px;
-    -webkit-border-radius: 30px;
-    -moz-border-radius: 30px;
+    color: #615C63;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
     font-family: Verdana;
     width: auto;
     height: auto;
-    font-size: 1em;
-    padding: 10px 40px;
-    background-color: #FCFAF9;
+    font-size: .8em;
+    padding: .5em;
+    background-color: white;
     cursor: pointer;
 }
 .btn:hover, .btn:active{
     border:1px solid #BFBFBF;
     color: #8C8C8C;
-    background-color: #E8E8E8;
+    background-color: white;
+}
+
+.currentProfileName {
+    text-align:center;
+    font-size:3em;
+    font-weight: strong;
+    color: #F5805D;
+    font-family: 'Roboto Slab', serif;
+}
+
+.container {
+    justify-content: center;
+    margin-top:1em
+}
+
+.profileName {
+    justify-content: center;
+    margin-bottom:1em
+}
+
+.trashcan {
+    height: 30px;
+}
+
+.profileBtn {
+    min-width: 200px;
+    text-align: center;
+    margin-right:3em
+}
+
+.instructions {
+    max-width:800px;
+    text-align: center;
+    margin-top: 1em;
+    font-family: 'Roboto Slab', serif;
+}
+
+.instructionSet {
+    width: 133px;
+    padding: 10px;
+    border-right: 3px solid #4588ba;
+}
+
+.instructionSet:last-of-type {
+    border-right: none;
+  }
+
+.instructionSet h1 {
+    color:#F5805D;
+    font-size:1.1em;
+    font-weight: bold;
+}
+
+.instructionSet p {
+    color:#615C63;
+    font-size:.9em
+}
+
+.instructionSave {
+    max-width:800px;
+    text-align: center;
+    font-style: italic; 
+    margin-top: 1em;
+    font-family: 'Roboto Slab', serif;
 }

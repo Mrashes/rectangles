@@ -7,48 +7,71 @@
     <title>Rectangle Adventure</title>
     <link rel="stylesheet" href="./assets/css/reset.css">
     <link rel="stylesheet" href="./assets/css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Didact+Gothic|Roboto+Slab" rel="stylesheet">
 </head>
 <body>
-    <div class="unselectable profileInputSubmit">
-        <input type="text" name="profile" id="profileInput">
-        <input type="submit" id="profileSubmit" value="Create New Profile" class="btn">
-        <div class="currentProfileGroup">
-            <span class="currentProfile">Current Profile:</span>
-            <span id="currentProfile" class="currentProfileName"> </span>
-        </div>
-    </div>
-    <div class="flex">
-        <div style="border: 2px solid;width: 800px;" class="marginAutoLeft">
-            <svg id="mycanvas" width="800px" height="500px" version="1.1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
-                <rect id="remove0" class="remove" fill="orange" x="90" y="60" width="20" height="20" />
-                <rect id="rect0" class="myrect" fill="black" x="100" y="70" width="100" height="100" />
-                <rect id="resize0" class="resize" fill="red" x="190" y="160" width="20" height="20" />
-            </svg>
-        </div>
-        <div class="marginAutoRight">
-            <div class="unselectable profileList">
-                <button class="block btn" onclick="removeAllRectangles()">Clear all Rectangles</button>
-                <button class="block btn marginTop" onclick="newRectangle()">New Rectangle</button> 
+
+    <div class="flex container">
+        <div>
+            <div class="currentProfileName unselectable">
+                <span id="currentProfile">Profile</span>
             </div>
-            <div id="profileList" class="profileList unselectable"></div>    
+            <div style="border: 2px solid;width: 800px;background-color:white;" class="marginAutoLeft">
+                <svg id="mycanvas" width="800px" height="500px" version="1.1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+                    <rect id="remove0" class="remove" fill="orange" x="90" y="60" width="20" height="20" />
+                    <rect id="rect0" class="myrect" fill="black" x="100" y="70" width="100" height="100" />
+                    <rect id="resize0" class="resize" fill="red" x="190" y="160" width="20" height="20" />
+                </svg>
+            </div>
+            <div class="flex instructions unselectable">
+                <div class="instructionSet">
+                    <h1>New Profile</h1>
+                    <p>Use the input on the right</p>
+                </div>
+                <div class="instructionSet">
+                    <h1>Switch Profiles</h1>
+                    <p>Click the Profile button on the right</p>
+                </div>
+                <div class="instructionSet">
+                    <h1>Resize</h1>
+                    <p>Drage the orange square in the bottom right-hand corner</p>
+                </div>
+                <div class="instructionSet">
+                    <h1>Move</h1>
+                    <p>Click and drag the middle of the rectangle</p>
+                </div>
+                <div class="instructionSet">
+                    <h1>Change Color</h1>
+                    <p>Double click the rectangle</p>
+                </div>
+                <div class="instructionSet">
+                    <h1>Delete Rectangle</h1>
+                    <p>Double Click square in the top left-hand corner</p>
+                </div>
+            </div>
+            <div class="instructionSave unselectable">
+                All Rectangles are saved automatically
+            </div>
         </div>
+
+        <div class="unselectable btnGroupHead">
+            <div class="btnGroup1">
+                <div class="flex">
+                    <input type="text" name="profile" id="profileInput">
+                    <input type="submit" id="profileSubmit" value="Create New Profile" class="btn">
+                </div>
+                <button class="block btn btnGroup1Margin" onclick="removeAllRectangles()">Clear all Rectangles</button>
+                <button class="block btn btnGroup1Margin" onclick="newRectangle()">New Rectangle</button> 
+            </div>
+
+            <div class="container">
+                <div id="profileList"></div>    
+            </div>
+        </div>
+
     </div>
 
-    <div class="flex unselectable instructions marginTop">
-        <p>Instructions:</p>
-        <div>
-            
-            <p>Use Input at top to make new profile</p>
-            <p>Click profile name to switch</p>
-            <p>To reszie rectangle, drag lower right square</p>
-            <p>To move rectangle, drag middle of object</p>
-            <p>To change color of rectangle, double click middle of object</p>
-        </div>
-        <div>
-            <p>To delete rectangle, double click upper left square</p>
-            <p>The state of the rectangles all autosaves,</p>
-        </div>
-    </div>
+
 
     <script src="./assets/js/index.js"></script>
     <script src="./assets/js/translate-resize.js"></script>
