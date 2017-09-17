@@ -1,19 +1,5 @@
-* {
-    font-family: Verdana;    
-}
-
-.currentProfile {
-    font-size: 2em;
-    display: inline-block;
-}
-
-.currentProfileName {
-    font-size: 2em;
-}
-
-.currentProfileGroup {
-    margin: auto;
-    width: 25em;
+body {
+    background-color: #DADCE0;
 }
 
 .unselectable {
@@ -33,60 +19,71 @@
     display:block;
 }
 
-.inline {
-    display:inline;
+.btnGroupHead {
+    margin:1em;
+    margin-top:3em;
 }
 
-.profileList {
-    margin-left: 25px;
+.btnGroup1 {
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    background-color:#F5805D;
+    padding:1em;
 }
 
-.finger {
-    cursor: pointer;
+.btnGroup2 {
+
 }
 
-.profileInputSubmit {
-    width: 35em;
-    margin: 0 auto;
-    margin-bottom: 1em;
-    margin-top: 1em;
-}
-
-.marginAutoRight {
-    margin-right:auto;
-}
-
-.marginAutoLeft {
-    margin-left:auto;
-}
-
-.instructions {
-    width: 800px;
-    margin: auto;
-}
-
-
-.marginTop {
-    margin-top:25px
+.btnGroup1Margin {
+    margin: 1em auto;
 }
 
 .btn{
     /* display: inline-block; */
     border:1px solid #BFBFBF;
     color: #8C8C8C;
-    border-radius: 30px;
-    -webkit-border-radius: 30px;
-    -moz-border-radius: 30px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
     font-family: Verdana;
     width: auto;
     height: auto;
-    font-size: 1em;
-    padding: 10px 40px;
-    background-color: #FCFAF9;
+    font-size: .8em;
+    padding: .5em;
+    background-color: white;
     cursor: pointer;
 }
 .btn:hover, .btn:active{
     border:1px solid #BFBFBF;
     color: #8C8C8C;
-    background-color: #E8E8E8;
+    background-color: white;
+}
+
+.currentProfileName {
+    text-align:center;
+    font-size:3em;
+    font-weight: strong;
+    color: #F5805D;
+}
+
+.container {
+    justify-content: center;
+    margin-top:3em
+}
+
+.profileName {
+    justify-content: center;
+    margin-bottom:1em
+}
+
+.trashcan {
+    height: 30px;
+}
+
+.profileBtn {
+    min-width: 200px;
+    text-align: center;
+    margin-right:3em
 }
