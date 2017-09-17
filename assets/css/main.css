@@ -45,10 +45,6 @@
     cursor: pointer;
 }
 
-.marginTop {
-    margin-top:25px
-}
-
 .profileInputSubmit {
     width: 35em;
     margin: 0 auto;
@@ -64,6 +60,16 @@
     margin-left:auto;
 }
 
+.instructions {
+    width: 800px;
+    margin: auto;
+}
+
+
+.marginTop {
+    margin-top:25px
+}
+
 .btn{
     /* display: inline-block; */
     border:1px solid #BFBFBF;
@@ -77,6 +83,7 @@
     font-size: 1em;
     padding: 10px 40px;
     background-color: #FCFAF9;
+    cursor: pointer;
 }
 .btn:hover, .btn:active{
     border:1px solid #BFBFBF;
