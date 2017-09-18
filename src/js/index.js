@@ -1,3 +1,9 @@
+import './translate-resize.js'
+import './localStorage.js'
+import './color-remove.js'
+import './profile.js'
+
+
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);

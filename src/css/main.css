@@ -1,0 +1,123 @@
+body {
+    background-color: #DADCE0;
+}
+
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.flex {
+    display:flex;
+}
+
+.block {
+    display:block;
+}
+
+.btnGroupHead {
+    margin: 1em;
+    margin-top: 3em;
+    font-family: 'Didact Gothic', sans-serif;
+}
+
+.btnGroup1 {
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    background-color:#F5805D;
+    padding:1em;
+}
+
+.btnGroup1Margin {
+    margin: 1em auto;
+}
+
+.btn{
+    /* display: inline-block; */
+    border:1px solid #BFBFBF;
+    color: #615C63;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    font-family: Verdana;
+    width: auto;
+    height: auto;
+    font-size: .8em;
+    padding: .5em;
+    background-color: white;
+    cursor: pointer;
+}
+.btn:hover, .btn:active{
+    border:1px solid #BFBFBF;
+    color: #8C8C8C;
+    background-color: white;
+}
+
+.currentProfileName {
+    text-align:center;
+    font-size:3em;
+    font-weight: strong;
+    color: #F5805D;
+    font-family: 'Roboto Slab', serif;
+}
+
+.container {
+    justify-content: center;
+    margin-top:1em
+}
+
+.profileName {
+    justify-content: center;
+    margin-bottom:1em
+}
+
+.trashcan {
+    height: 30px;
+}
+
+.profileBtn {
+    min-width: 200px;
+    text-align: center;
+    margin-right:3em
+}
+
+.instructions {
+    max-width:800px;
+    text-align: center;
+    margin-top: 1em;
+    font-family: 'Roboto Slab', serif;
+}
+
+.instructionSet {
+    width: 133px;
+    padding: 10px;
+    border-right: 3px solid #4588ba;
+}
+
+.instructionSet:last-of-type {
+    border-right: none;
+  }
+
+.instructionSet h1 {
+    color:#F5805D;
+    font-size:1.1em;
+    font-weight: bold;
+}
+
+.instructionSet p {
+    color:#615C63;
+    font-size:.9em
+}
+
+.instructionSave {
+    max-width:800px;
+    text-align: center;
+    font-style: italic; 
+    margin-top: 1em;
+    font-family: 'Roboto Slab', serif;
+}
