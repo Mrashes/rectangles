@@ -30,8 +30,6 @@ function mousemove (e) {
         x: e.clientX,
         y: e.clientY
     }
-    // console.log("rect"+String(parseInt(window.target.id)-parseInt(1)))
-    console.log(window.target.id.slice(6))
     var rect= document.getElementById("rect"+window.target.id.slice(6));
     var w=parseFloat(rect.getAttribute('width'));
     var h=parseFloat(rect.getAttribute('height'));

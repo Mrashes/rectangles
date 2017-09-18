@@ -24,16 +24,20 @@ function colorChange (target) {
   rect.setAttribute('fill', color);
 }
 
-window.counter = 0
-
 //This function adds new rectangle to the canvas
 function newRectangle () {
   let canvas = document.getElementById('mycanvas');
   //I use to use the number of children at the indicator but have to switch to a global counter for bug reasons
   // let children = String(canvas.children.length/3)
-  let children = window.counter;
-  canvas.innerHTML += '<circle id="remove'+children+'" class="remove" fill="#A09DA1" cx="100" cy="70" r="10"/> \n <rect id="rect'+children+'" class="myrect" fill="black" x="100" y="70" width="100" height="100" /> \n <circle id="resize'+children+'" class="resize" fill="#F5805D" cx="200" cy="170" r="10"/>';
-  window.counter += 1;
+  let counter = localStorage.getItem("counter")
+  if (counter === null) {
+    counter = 0
+  }
+  else {}
+  canvas.innerHTML += '<circle id="remove'+counter+'" class="remove" fill="#A09DA1" cx="100" cy="70" r="10"/> \n <rect id="rect'+counter+'" class="myrect" fill="black" x="100" y="70" width="100" height="100" /> \n <circle id="resize'+counter+'" class="resize" fill="#F5805D" cx="200" cy="170" r="10"/>';
+  let intCounter = parseInt(counter)
+  intCounter += 1
+  localStorage.setItem('counter', intCounter)
   return localManipulation(document.getElementById('currentProfile').textContent)
 }
 
