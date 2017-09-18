@@ -24,11 +24,16 @@ function colorChange (target) {
   rect.setAttribute('fill', color);
 }
 
+window.counter = 0
+
 //This function adds new rectangle to the canvas
 function newRectangle () {
   let canvas = document.getElementById('mycanvas');
-  let children = canvas.children.length
-  canvas.innerHTML += '<circle id="remove'+String(children/3)+'" class="remove" fill="#A09DA1" cx="100" cy="70" r="10"/> \n <rect id="rect'+String(children/3)+'" class="myrect" fill="black" x="100" y="70" width="100" height="100" /> \n <circle id="resize'+String(children/3)+'" class="resize" fill="#F5805D" cx="200" cy="170" r="10"/>'
+  //I use to use the number of children at the indicator but have to switch to a global counter for bug reasons
+  // let children = String(canvas.children.length/3)
+  let children = window.counter;
+  canvas.innerHTML += '<circle id="remove'+children+'" class="remove" fill="#A09DA1" cx="100" cy="70" r="10"/> \n <rect id="rect'+children+'" class="myrect" fill="black" x="100" y="70" width="100" height="100" /> \n <circle id="resize'+children+'" class="resize" fill="#F5805D" cx="200" cy="170" r="10"/>';
+  window.counter += 1;
   return localManipulation(document.getElementById('currentProfile').textContent)
 }
 
@@ -46,8 +51,8 @@ NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
 
 function removeSingleRectangle (target) {
   document.getElementById(target.id).remove();
-  document.getElementById("rect"+target.id[6]).remove();
-  document.getElementById("resize"+target.id[6]).remove();
+  document.getElementById("rect"+target.id.slice(6)).remove();
+  document.getElementById("resize"+target.id.slice(6)).remove();
   return localManipulation(document.getElementById('currentProfile').textContent);
 }
 

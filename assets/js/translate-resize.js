@@ -31,8 +31,8 @@ function mousemove (e) {
         y: e.clientY
     }
     // console.log("rect"+String(parseInt(window.target.id)-parseInt(1)))
-
-    var rect= document.getElementById("rect"+window.target.id[6]);
+    console.log(window.target.id.slice(6))
+    var rect= document.getElementById("rect"+window.target.id.slice(6));
     var w=parseFloat(rect.getAttribute('width'));
     var h=parseFloat(rect.getAttribute('height'));
 
@@ -103,7 +103,7 @@ function mousemoveTranslate (e) {
 }
 
 function updateResizeIconTranslate (dx,dy){
-    var resize= document.getElementById("resize"+window.target.id[4]);
+    var resize= document.getElementById("resize"+window.target.id.slice(4));
     var x=parseFloat(resize.getAttribute('cx'));
     var y=parseFloat(resize.getAttribute('cy'));
 
@@ -117,7 +117,7 @@ function updateResizeIconTranslate (dx,dy){
 }
 
 function updateRemoveIconTranslate (dx,dy) {
-    var remove= document.getElementById("remove"+window.target.id[4]);
+    var remove= document.getElementById("remove"+window.target.id.slice(4));
     var x=parseFloat(remove.getAttribute('cx'));
     var y=parseFloat(remove.getAttribute('cy'));
 
