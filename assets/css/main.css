@@ -95,7 +95,7 @@ body {
   .colorSelector label, output{
     padding: 2px 9px;
     border-radius: 3px;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto Slab', serif;
     color: #000;
     font-size: 1.1em;
   }
@@ -107,6 +107,7 @@ body {
   }
   .colorSelector  label[for=b], .colorSelector output[for=b]{
     background-color: #00f;
+    color:white;
   }
 
 .profileName {
