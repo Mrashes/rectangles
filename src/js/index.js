@@ -1,8 +1,8 @@
-import './translate-resize.js'
-import './localStorage.js'
+// import './translate-resize.js'
+// import './localStorage.js'
 import './color-remove.js'
 import './profile.js'
-import './colorSelector.js'
+// import './colorSelector.js'
 
 
 function getRandomInt(min, max) {

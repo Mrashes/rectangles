@@ -1,3 +1,4 @@
+import './color-remove.js'
 //Read the input to create a new profile
 function readForm () {
     let inputValue = document.getElementById("profileInput").value;

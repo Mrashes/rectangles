@@ -60,254 +60,11 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__translate_resize_js__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__translate_resize_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__translate_resize_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__localStorage_js__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__localStorage_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__localStorage_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__color_remove_js__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__color_remove_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__color_remove_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__profile_js__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__profile_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__profile_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__colorSelector_js__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__colorSelector_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__colorSelector_js__);
-
-
-
-
-
-
-
-function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
-}
-//Cause I always need it
-
-
-//blog post on html canvas https://simonsarris.com/making-html5-canvas-useful/
-//Was useful but I have transitioned from canvas to svg
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports) {
-
-//This is the svg shape Resizer and translator
-document.addEventListener('mousedown', mousedown, false);
-
-var mousedown_points;
-//On mouse down check what the mouse down is on
-function mousedown (e) {
-
-    window.target = e.target;
-    if (window.target.className.baseVal === 'resize') {
-        mousedown_points = {
-            x: e.clientX,
-            y: e.clientY
-        }
-        document.addEventListener('mouseup', mouseup, false);
-        document.addEventListener('mousemove', mousemove, false);
-    }
-    else if (window.target.className.baseVal === 'myrect') {
-      mousedown_points = {
-        x: e.clientX,
-        y: e.clientY
-    }
-        document.addEventListener('mouseup', mouseupTranslate, false);
-        document.addEventListener('mousemove', mousemoveTranslate, false);
-        handleTargetColor(e)
-        
-    }
-}
-
-//when you move the mouse on resize transform the main rectangle based on movement
-function mousemove (e) {
-    var current_points = {
-        x: e.clientX,
-        y: e.clientY
-    }
-    var rect= document.getElementById("rect"+window.target.id.slice(6));
-    var w=parseFloat(rect.getAttribute('width'));
-    var h=parseFloat(rect.getAttribute('height'));
-
-    var dx=current_points.x-mousedown_points.x;
-    var dy=current_points.y-mousedown_points.y;
-
-    w+=dx;
-    h+=dy;
-
-    
-    if (w<=0 || h<=0) {
-        return console.log('Issue with negative numbers')
-    }
-
-    else {
-        rect.setAttribute('width',w);
-        rect.setAttribute('height',h);
-    
-        mousedown_points=current_points;
-    
-        updateResizeIcon(dx,dy);    
-    }   
-}
-
-//The Resize icon doesn't transform but translates so change the positioning
-function updateResizeIcon (dx,dy){
-    var resize= document.getElementById(window.target.id);
-    var x=parseFloat(resize.getAttribute('cx'));
-    var y=parseFloat(resize.getAttribute('cy'));
-
-    x+=dx;
-    y+=dy;
-
-    resize.setAttribute('cx',x);
-    resize.setAttribute('cy',y);
-}
-
-//When you lift up on the mouse remove the listeners for mouse movement
-function mouseup (e) {
-    localManipulation(document.getElementById('currentProfile').textContent);
-    document.removeEventListener('mouseup', mouseup, false);
-    document.removeEventListener('mousemove', mousemove, false);
-}
-
-//These are the same but translating only
-function mousemoveTranslate (e) {
-    var current_points = {
-        x: e.clientX,
-        y: e.clientY
-    }
-
-    var rect= document.getElementById(window.target.id);
-    var x=parseFloat(rect.getAttribute('x'));
-    var y=parseFloat(rect.getAttribute('y'));
-
-    var dx=current_points.x-mousedown_points.x;
-    var dy=current_points.y-mousedown_points.y;
-
-    x+=dx;
-    y+=dy;
-
-    rect.setAttribute('x',x);
-    rect.setAttribute('y',y);
-
-    mousedown_points=current_points;
-
-    updateResizeIconTranslate(dx,dy);
-}
-
-function updateResizeIconTranslate (dx,dy){
-    var resize= document.getElementById("resize"+window.target.id.slice(4));
-    var x=parseFloat(resize.getAttribute('cx'));
-    var y=parseFloat(resize.getAttribute('cy'));
-
-    x+=dx;
-    y+=dy;
-
-    resize.setAttribute('cx',x);
-    resize.setAttribute('cy',y);
-
-    updateRemoveIconTranslate(dx,dy)
-}
-
-function updateRemoveIconTranslate (dx,dy) {
-    var remove= document.getElementById("remove"+window.target.id.slice(4));
-    var x=parseFloat(remove.getAttribute('cx'));
-    var y=parseFloat(remove.getAttribute('cy'));
-
-    x+=dx;
-    y+=dy;
-
-    remove.setAttribute('cx',x);
-    remove.setAttribute('cy',y);
-}
-
-function mouseupTranslate (e) {
-    localManipulation(document.getElementById('currentProfile').textContent);
-    document.removeEventListener('mouseup', mouseupTranslate, false);
-    document.removeEventListener('mousemove', mousemoveTranslate, false);
-}
-
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports) {
-
-//returns all profiles stored in the localstorage
-function localGetProfiles () {
-    let profiles = localStorage.getItem("rectangleProfile");
-    if (profiles === null || profiles === [""]) {
-        console.log(Error)
-        return
-    }
-    else {
-        return profiles.split(' ');
-    }
-
-}
-
-//adding new profiles into the localstorage.  If there isn't one already the space is ommitted
-function localProfilePost (newProfile) {
-    let currentProfiles = localGetProfiles();
-
-    if (currentProfiles === null || currentProfiles === [""] || currentProfiles === undefined) {
-        currentProfiles = newProfile
-        localStorage.setItem('rectangleProfile', currentProfiles)
-        return;
-    }
-    else if (currentProfiles.indexOf(newProfile) !== -1) {
-        noDoubles(currentProfiles, newProfile);
-        return;
-    }
-    else {
-        currentProfiles.push(newProfile);
-        localStorage.setItem('rectangleProfile', currentProfiles.join(' '));
-        return;
-    }
-}
-
-//If a profile name is reused add a random number to it
-function noDoubles (currentProfiles, newProfile) {
-    let index = currentProfiles.indexOf(newProfile);
-    let counter = localStorage.getItem('counter')
-    if (counter === null) {
-        counter = 0
-      }
-    currentProfiles.push(newProfile+counter);
-    //turn counter into int
-    let intCounter = parseInt(counter)
-    intCounter += 1
-    localStorage.setItem('counter', intCounter)
-    localStorage.setItem('rectangleProfile', currentProfiles.join(' '));
-    return;
-}
-
-//adding html into a rectangleProfilename local storage area
-function localManipulation (Profilename) {
-    let canvas = document.getElementById('mycanvas');
-    let children = canvas.children.length;
-    let html = canvas.innerHTML
-    return localStorage.setItem("rectangle"+Profilename, html);
-}
-
-function localLoadHTML (Profilename) {
-    let canvas = document.getElementById('mycanvas');
-    let html = localStorage.getItem("rectangle" + Profilename);
-    canvas.innerHTML = html;
-    return canvas;
-}
-
-/***/ }),
-/* 3 */
 /***/ (function(module, exports) {
 
 //On double click, have 2 cases one for a double click on main rectangle (color) and on remove (remove)
@@ -369,8 +126,39 @@ function removeAllRectangles () {
 document.addEventListener('dblclick', dblClick, false);
 
 /***/ }),
-/* 4 */
-/***/ (function(module, exports) {
+/* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__color_remove_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__color_remove_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__color_remove_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__profile_js__ = __webpack_require__(2);
+// import './translate-resize.js'
+// import './localStorage.js'
+
+
+// import './colorSelector.js'
+
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+}
+//Cause I always need it
+
+
+//blog post on html canvas https://simonsarris.com/making-html5-canvas-useful/
+//Was useful but I have transitioned from canvas to svg
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__color_remove_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__color_remove_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__color_remove_js__);
 
 //Read the input to create a new profile
 function readForm () {
@@ -493,97 +281,6 @@ window.onload = function () {
 
     init();
 };
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports) {
-
-// //Also a legacy function from before I added in color sliders
-//This is a random color generator to place hold until I implement that color slider idea
-function randomColor () {
-    // let colors = ['red', 'green', 'blue', 'yellow', 'purple', 'black', 'aqua'];
-    let colors = ["AliceBlue","AntiqueWhite","Aqua","Aquamarine","Beige","Bisque","Black","BlanchedAlmond","Blue","BlueViolet","Brown","BurlyWood","CadetBlue","Chartreuse","Chocolate","Coral","CornflowerBlue","Cornsilk","Crimson","Cyan","DarkBlue","DarkCyan","DarkGoldenRod","DarkGray","DarkGrey","DarkGreen","DarkKhaki","DarkMagenta","DarkOliveGreen","Darkorange","DarkOrchid","DarkRed","DarkSalmon","DarkSeaGreen","DarkSlateBlue","DarkSlateGray","DarkSlateGrey","DarkTurquoise","DarkViolet","DeepPink","DeepSkyBlue","DimGray","DimGrey","DodgerBlue","FireBrick","FloralWhite","ForestGreen","Fuchsia","Gainsboro","GhostWhite","Gold","GoldenRod","Gray","Grey","Green","GreenYellow","HotPink","IndianRed","Indigo","Ivory","Khaki","Lavender","LawnGreen","LemonChiffon","Lime","LimeGreen","Magenta","Maroon","MediumAquaMarine","MediumBlue","MediumOrchid","MediumPurple","MediumSeaGreen","MediumSlateBlue","MediumSpringGreen","MediumTurquoise","MediumVioletRed","MidnightBlue","MintCream","MistyRose","Moccasin","NavajoWhite","Navy","OldLace","Olive","OliveDrab","Orange","OrangeRed","Orchid","PaleGoldenRod","PaleGreen","PaleTurquoise","PaleVioletRed","PapayaWhip","PeachPuff","Peru","Pink","Plum","PowderBlue","Purple","Red","RosyBrown","RoyalBlue","SaddleBrown","Salmon","SandyBrown","SeaGreen","SeaShell","Sienna","Silver","SkyBlue","SlateBlue","SlateGray","SlateGrey","SpringGreen","SteelBlue","Tan","Teal","Thistle","Tomato","Turquoise","Violet","Wheat","Yellow","YellowGreen"];
-    
-    return colors[getRandomInt(0, colors.length)];
-  }
-
-
-//Change the fill of a color based on random color
-function colorChange (target) {
-    color = randomColor();
-    var rect= document.getElementById(target.id);
-    rect.setAttribute('fill', color);
-}
-
-function handleTargetColor (event) {
-    if (window.targetColor === undefined) {
-        window.targetColor = event.target;
-        document.getElementById(targetColor.id).setAttribute('rx', 10);
-        document.getElementById('colorSelector').style.display = 'block';
-        return;
-    }
-    else {
-        document.getElementById(targetColor.id).setAttribute('rx', 0);
-        window.targetColor = event.target;
-        document.getElementById(targetColor.id).setAttribute('rx', 10);
-        return;
-    }
-}
-
-function showColorChange() {
-    document.getElementById(targetColor.id).style.display = 'block';
-}
-
-// for reference, I yonked this from https://codepen.io/leemark/pen/lpEHr
-
-var r = document.querySelector('#r'),
-g = document.querySelector('#g'),
-b = document.querySelector('#b'),
-r_out = document.querySelector('#r_out'),
-g_out = document.querySelector('#g_out'),
-b_out = document.querySelector('#b_out');
-
-function setColor(){
-    var r_hex = parseInt(r.value, 10).toString(16),
-    g_hex = parseInt(g.value, 10).toString(16),
-    b_hex = parseInt(b.value, 10).toString(16),
-    hex = "#" + pad(r_hex) + pad(g_hex) + pad(b_hex);
-    document.getElementById(targetColor.id).setAttribute('fill', hex); 
-}
-
-function pad(n){
-    return (n.length<2) ? "0"+n : n;
-}
-
-r.addEventListener('change', function() {
-    setColor();
-    r_out.value = r.value;
-}, false);
-
-r.addEventListener('input', function() {
-    setColor();
-    r_out.value = r.value;
-}, false);
-
-g.addEventListener('change', function() {
-    setColor();
-    g_out.value = g.value;
-}, false);
-
-g.addEventListener('input', function() {
-    setColor();
-    g_out.value = g.value;
-}, false);
-
-b.addEventListener('change', function() {
-    setColor();
-    b_out.value = b.value;
-}, false);
-
-b.addEventListener('input', function() {
-    setColor();
-    b_out.value = b.value;
-}, false);
 
 /***/ })
 /******/ ]);
