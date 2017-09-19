@@ -27,7 +27,15 @@ function populateProfiles () {
     localProfiles = localGetProfiles();
     let profileDOM = document.getElementById('profileList');
     profileDOM.innerHTML = "";
-    if (localProfiles === undefined) {
+    // try {
+    //     localProfiles[0]
+    // } catch (e) {
+    //     consol
+    // }
+
+    console.log(localProfiles)
+
+    if (localProfiles === undefined || localProfiles === null) {
         return;
     }
     else if (localProfiles[0] === "" && localProfiles.length>1) {
@@ -85,7 +93,13 @@ function profileEvents (event) {
 }
 
 function init () {
-    if (localStorage.getItem("rectangleProfile") === null) {
+    let local
+    try {
+        local = localStorage.getItem("rectangleProfile");
+    } catch (e) {
+        local = null;
+    }
+    if (local === null) {
         populateProfiles();
         return;
     }
