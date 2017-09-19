@@ -77,6 +77,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__color_remove_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__color_remove_js__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__profile_js__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__profile_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__profile_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__colorSelector_js__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__colorSelector_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__colorSelector_js__);
+
 
 
 
@@ -106,7 +109,7 @@ var mousedown_points;
 function mousedown (e) {
 
     window.target = e.target;
-    if (target.className.baseVal === 'resize') {
+    if (window.target.className.baseVal === 'resize') {
         mousedown_points = {
             x: e.clientX,
             y: e.clientY
@@ -114,13 +117,15 @@ function mousedown (e) {
         document.addEventListener('mouseup', mouseup, false);
         document.addEventListener('mousemove', mousemove, false);
     }
-    else if (target.className.baseVal === 'myrect') {
+    else if (window.target.className.baseVal === 'myrect') {
       mousedown_points = {
         x: e.clientX,
         y: e.clientY
     }
-    document.addEventListener('mouseup', mouseupTranslate, false);
-    document.addEventListener('mousemove', mousemoveTranslate, false);
+        document.addEventListener('mouseup', mouseupTranslate, false);
+        document.addEventListener('mousemove', mousemoveTranslate, false);
+        handleTargetColor(e)
+        
     }
 }
 
@@ -130,9 +135,7 @@ function mousemove (e) {
         x: e.clientX,
         y: e.clientY
     }
-    // console.log("rect"+String(parseInt(window.target.id)-parseInt(1)))
-
-    var rect= document.getElementById("rect"+window.target.id[6]);
+    var rect= document.getElementById("rect"+window.target.id.slice(6));
     var w=parseFloat(rect.getAttribute('width'));
     var h=parseFloat(rect.getAttribute('height'));
 
@@ -203,7 +206,7 @@ function mousemoveTranslate (e) {
 }
 
 function updateResizeIconTranslate (dx,dy){
-    var resize= document.getElementById("resize"+window.target.id[4]);
+    var resize= document.getElementById("resize"+window.target.id.slice(4));
     var x=parseFloat(resize.getAttribute('cx'));
     var y=parseFloat(resize.getAttribute('cy'));
 
@@ -217,7 +220,7 @@ function updateResizeIconTranslate (dx,dy){
 }
 
 function updateRemoveIconTranslate (dx,dy) {
-    var remove= document.getElementById("remove"+window.target.id[4]);
+    var remove= document.getElementById("remove"+window.target.id.slice(4));
     var x=parseFloat(remove.getAttribute('cx'));
     var y=parseFloat(remove.getAttribute('cy'));
 
@@ -239,24 +242,10 @@ function mouseupTranslate (e) {
 /* 2 */
 /***/ (function(module, exports) {
 
-//This currently works for just one instance
-function localSave (name) {
-    let canvas = document.getElementById('mycanvas');
-    let html = canvas.innerHTML;
-    return localStorage.setItem(name, html);
-}
-
-function localRestoreFrom (name) {
-    let canvas = document.getElementById('mycanvas');
-    console.log(localStorage.getItem(name))
-    canvas.innerHTML = localStorage.getItem(name);
-    return canvas;
-}
-
 //returns all profiles stored in the localstorage
 function localGetProfiles () {
     let profiles = localStorage.getItem("rectangleProfile");
-    if (profiles === null) {
+    if (profiles === null || profiles === [""]) {
         console.log(Error)
         return
     }
@@ -268,17 +257,38 @@ function localGetProfiles () {
 
 //adding new profiles into the localstorage.  If there isn't one already the space is ommitted
 function localProfilePost (newProfile) {
-    let currentProfiles = localStorage.getItem("rectangleProfile");
-    if (currentProfiles === null) {
+    let currentProfiles = localGetProfiles();
+
+    if (currentProfiles === null || currentProfiles === [""] || currentProfiles === undefined) {
         currentProfiles = newProfile
         localStorage.setItem('rectangleProfile', currentProfiles)
-        return
+        return;
+    }
+    else if (currentProfiles.indexOf(newProfile) !== -1) {
+        noDoubles(currentProfiles, newProfile);
+        return;
     }
     else {
-        currentProfiles += " " + newProfile
-        localStorage.setItem('rectangleProfile', currentProfiles)
-        return
+        currentProfiles.push(newProfile);
+        localStorage.setItem('rectangleProfile', currentProfiles.join(' '));
+        return;
     }
+}
+
+//If a profile name is reused add a random number to it
+function noDoubles (currentProfiles, newProfile) {
+    let index = currentProfiles.indexOf(newProfile);
+    let counter = localStorage.getItem('counter')
+    if (counter === null) {
+        counter = 0
+      }
+    currentProfiles.push(newProfile+counter);
+    //turn counter into int
+    let intCounter = parseInt(counter)
+    intCounter += 1
+    localStorage.setItem('counter', intCounter)
+    localStorage.setItem('rectangleProfile', currentProfiles.join(' '));
+    return;
 }
 
 //adding html into a rectangleProfilename local storage area
@@ -311,26 +321,21 @@ function dblClick (e) {
   }
 }
 
-//This is a random color generator to place hold until I implement that color slider idea
-function randomColor () {
-  // let colors = ['red', 'green', 'blue', 'yellow', 'purple', 'black', 'aqua'];
-  let colors = ["AliceBlue","AntiqueWhite","Aqua","Aquamarine","Beige","Bisque","Black","BlanchedAlmond","Blue","BlueViolet","Brown","BurlyWood","CadetBlue","Chartreuse","Chocolate","Coral","CornflowerBlue","Cornsilk","Crimson","Cyan","DarkBlue","DarkCyan","DarkGoldenRod","DarkGray","DarkGrey","DarkGreen","DarkKhaki","DarkMagenta","DarkOliveGreen","Darkorange","DarkOrchid","DarkRed","DarkSalmon","DarkSeaGreen","DarkSlateBlue","DarkSlateGray","DarkSlateGrey","DarkTurquoise","DarkViolet","DeepPink","DeepSkyBlue","DimGray","DimGrey","DodgerBlue","FireBrick","FloralWhite","ForestGreen","Fuchsia","Gainsboro","GhostWhite","Gold","GoldenRod","Gray","Grey","Green","GreenYellow","HotPink","IndianRed","Indigo","Ivory","Khaki","Lavender","LawnGreen","LemonChiffon","Lime","LimeGreen","Magenta","Maroon","MediumAquaMarine","MediumBlue","MediumOrchid","MediumPurple","MediumSeaGreen","MediumSlateBlue","MediumSpringGreen","MediumTurquoise","MediumVioletRed","MidnightBlue","MintCream","MistyRose","Moccasin","NavajoWhite","Navy","OldLace","Olive","OliveDrab","Orange","OrangeRed","Orchid","PaleGoldenRod","PaleGreen","PaleTurquoise","PaleVioletRed","PapayaWhip","PeachPuff","Peru","Pink","Plum","PowderBlue","Purple","Red","RosyBrown","RoyalBlue","SaddleBrown","Salmon","SandyBrown","SeaGreen","SeaShell","Sienna","Silver","SkyBlue","SlateBlue","SlateGray","SlateGrey","SpringGreen","SteelBlue","Tan","Teal","Thistle","Tomato","Turquoise","Violet","Wheat","Yellow","YellowGreen"];
-  
-  return colors[getRandomInt(0, colors.length)];
-}
-
-//Change the fill of a color based on random color
-function colorChange (target) {
-  color = randomColor();
-  var rect= document.getElementById(target.id);
-  rect.setAttribute('fill', color);
-}
 
 //This function adds new rectangle to the canvas
 function newRectangle () {
   let canvas = document.getElementById('mycanvas');
-  let children = canvas.children.length
-  canvas.innerHTML += '<circle id="remove'+String(children/3)+'" class="remove" fill="#A09DA1" cx="100" cy="70" r="10"/> \n <rect id="rect'+String(children/3)+'" class="myrect" fill="black" x="100" y="70" width="100" height="100" /> \n <circle id="resize'+String(children/3)+'" class="resize" fill="#F5805D" cx="200" cy="170" r="10"/>'
+  //I use to use the number of children at the indicator but have to switch to a global counter for bug reasons
+  // let children = String(canvas.children.length/3)
+  let counter = localStorage.getItem("counter")
+  if (counter === null) {
+    counter = 0
+  }
+  else {}
+  canvas.innerHTML += '<circle id="remove'+counter+'" class="remove" fill="#A09DA1" cx="100" cy="70" r="10"/> \n <rect id="rect'+counter+'" class="myrect" fill="#000000" x="100" y="70" width="100" height="100" /> \n <circle id="resize'+counter+'" class="resize" fill="#F5805D" cx="200" cy="170" r="10"/>';
+  let intCounter = parseInt(counter)
+  intCounter += 1
+  localStorage.setItem('counter', intCounter)
   return localManipulation(document.getElementById('currentProfile').textContent)
 }
 
@@ -348,8 +353,8 @@ NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
 
 function removeSingleRectangle (target) {
   document.getElementById(target.id).remove();
-  document.getElementById("rect"+target.id[6]).remove();
-  document.getElementById("resize"+target.id[6]).remove();
+  document.getElementById("rect"+target.id.slice(6)).remove();
+  document.getElementById("resize"+target.id.slice(6)).remove();
   return localManipulation(document.getElementById('currentProfile').textContent);
 }
 
@@ -488,6 +493,97 @@ window.onload = function () {
 
     init();
 };
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+// //Also a legacy function from before I added in color sliders
+//This is a random color generator to place hold until I implement that color slider idea
+function randomColor () {
+    // let colors = ['red', 'green', 'blue', 'yellow', 'purple', 'black', 'aqua'];
+    let colors = ["AliceBlue","AntiqueWhite","Aqua","Aquamarine","Beige","Bisque","Black","BlanchedAlmond","Blue","BlueViolet","Brown","BurlyWood","CadetBlue","Chartreuse","Chocolate","Coral","CornflowerBlue","Cornsilk","Crimson","Cyan","DarkBlue","DarkCyan","DarkGoldenRod","DarkGray","DarkGrey","DarkGreen","DarkKhaki","DarkMagenta","DarkOliveGreen","Darkorange","DarkOrchid","DarkRed","DarkSalmon","DarkSeaGreen","DarkSlateBlue","DarkSlateGray","DarkSlateGrey","DarkTurquoise","DarkViolet","DeepPink","DeepSkyBlue","DimGray","DimGrey","DodgerBlue","FireBrick","FloralWhite","ForestGreen","Fuchsia","Gainsboro","GhostWhite","Gold","GoldenRod","Gray","Grey","Green","GreenYellow","HotPink","IndianRed","Indigo","Ivory","Khaki","Lavender","LawnGreen","LemonChiffon","Lime","LimeGreen","Magenta","Maroon","MediumAquaMarine","MediumBlue","MediumOrchid","MediumPurple","MediumSeaGreen","MediumSlateBlue","MediumSpringGreen","MediumTurquoise","MediumVioletRed","MidnightBlue","MintCream","MistyRose","Moccasin","NavajoWhite","Navy","OldLace","Olive","OliveDrab","Orange","OrangeRed","Orchid","PaleGoldenRod","PaleGreen","PaleTurquoise","PaleVioletRed","PapayaWhip","PeachPuff","Peru","Pink","Plum","PowderBlue","Purple","Red","RosyBrown","RoyalBlue","SaddleBrown","Salmon","SandyBrown","SeaGreen","SeaShell","Sienna","Silver","SkyBlue","SlateBlue","SlateGray","SlateGrey","SpringGreen","SteelBlue","Tan","Teal","Thistle","Tomato","Turquoise","Violet","Wheat","Yellow","YellowGreen"];
+    
+    return colors[getRandomInt(0, colors.length)];
+  }
+
+
+//Change the fill of a color based on random color
+function colorChange (target) {
+    color = randomColor();
+    var rect= document.getElementById(target.id);
+    rect.setAttribute('fill', color);
+}
+
+function handleTargetColor (event) {
+    if (window.targetColor === undefined) {
+        window.targetColor = event.target;
+        document.getElementById(targetColor.id).setAttribute('rx', 10);
+        document.getElementById('colorSelector').style.display = 'block';
+        return;
+    }
+    else {
+        document.getElementById(targetColor.id).setAttribute('rx', 0);
+        window.targetColor = event.target;
+        document.getElementById(targetColor.id).setAttribute('rx', 10);
+        return;
+    }
+}
+
+function showColorChange() {
+    document.getElementById(targetColor.id).style.display = 'block';
+}
+
+// for reference, I yonked this from https://codepen.io/leemark/pen/lpEHr
+
+var r = document.querySelector('#r'),
+g = document.querySelector('#g'),
+b = document.querySelector('#b'),
+r_out = document.querySelector('#r_out'),
+g_out = document.querySelector('#g_out'),
+b_out = document.querySelector('#b_out');
+
+function setColor(){
+    var r_hex = parseInt(r.value, 10).toString(16),
+    g_hex = parseInt(g.value, 10).toString(16),
+    b_hex = parseInt(b.value, 10).toString(16),
+    hex = "#" + pad(r_hex) + pad(g_hex) + pad(b_hex);
+    document.getElementById(targetColor.id).setAttribute('fill', hex); 
+}
+
+function pad(n){
+    return (n.length<2) ? "0"+n : n;
+}
+
+r.addEventListener('change', function() {
+    setColor();
+    r_out.value = r.value;
+}, false);
+
+r.addEventListener('input', function() {
+    setColor();
+    r_out.value = r.value;
+}, false);
+
+g.addEventListener('change', function() {
+    setColor();
+    g_out.value = g.value;
+}, false);
+
+g.addEventListener('input', function() {
+    setColor();
+    g_out.value = g.value;
+}, false);
+
+b.addEventListener('change', function() {
+    setColor();
+    b_out.value = b.value;
+}, false);
+
+b.addEventListener('input', function() {
+    setColor();
+    b_out.value = b.value;
+}, false);
 
 /***/ })
 /******/ ]);

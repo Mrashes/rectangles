@@ -6,7 +6,7 @@ var mousedown_points;
 function mousedown (e) {
 
     window.target = e.target;
-    if (target.className.baseVal === 'resize') {
+    if (window.target.className.baseVal === 'resize') {
         mousedown_points = {
             x: e.clientX,
             y: e.clientY
@@ -14,13 +14,15 @@ function mousedown (e) {
         document.addEventListener('mouseup', mouseup, false);
         document.addEventListener('mousemove', mousemove, false);
     }
-    else if (target.className.baseVal === 'myrect') {
+    else if (window.target.className.baseVal === 'myrect') {
       mousedown_points = {
         x: e.clientX,
         y: e.clientY
     }
-    document.addEventListener('mouseup', mouseupTranslate, false);
-    document.addEventListener('mousemove', mousemoveTranslate, false);
+        document.addEventListener('mouseup', mouseupTranslate, false);
+        document.addEventListener('mousemove', mousemoveTranslate, false);
+        handleTargetColor(e)
+        
     }
 }
 
@@ -30,9 +32,7 @@ function mousemove (e) {
         x: e.clientX,
         y: e.clientY
     }
-    // console.log("rect"+String(parseInt(window.target.id)-parseInt(1)))
-
-    var rect= document.getElementById("rect"+window.target.id[6]);
+    var rect= document.getElementById("rect"+window.target.id.slice(6));
     var w=parseFloat(rect.getAttribute('width'));
     var h=parseFloat(rect.getAttribute('height'));
 
@@ -103,7 +103,7 @@ function mousemoveTranslate (e) {
 }
 
 function updateResizeIconTranslate (dx,dy){
-    var resize= document.getElementById("resize"+window.target.id[4]);
+    var resize= document.getElementById("resize"+window.target.id.slice(4));
     var x=parseFloat(resize.getAttribute('cx'));
     var y=parseFloat(resize.getAttribute('cy'));
 
@@ -117,7 +117,7 @@ function updateResizeIconTranslate (dx,dy){
 }
 
 function updateRemoveIconTranslate (dx,dy) {
-    var remove= document.getElementById("remove"+window.target.id[4]);
+    var remove= document.getElementById("remove"+window.target.id.slice(4));
     var x=parseFloat(remove.getAttribute('cx'));
     var y=parseFloat(remove.getAttribute('cy'));
 
