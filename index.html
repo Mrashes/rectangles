@@ -42,7 +42,7 @@
                 </div>
                 <div class="instructionSet">
                     <h1>Change Color</h1>
-                    <p>Double click the rectangle</p>
+                    <p>Use the selector in the bottom right after selecting rectangle</p>
                 </div>
                 <div class="instructionSet">
                     <h1>Delete Rectangle</h1>
@@ -56,20 +56,41 @@
 
         <div class="unselectable btnGroupHead">
             <div class="btnGroup1">
-                <div class="flex">
-                    <input type="text" name="profile" id="profileInput">
-                    <input type="submit" id="profileSubmit" value="Create New Profile" class="btn">
+                    <div class="flex">
+                        <input type="text" name="profile" id="profileInput">
+                        <input type="submit" id="profileSubmit" value="Create New Profile" class="btn">
+                    </div>
+                    <button class="block btn btnGroup1Margin" id="removeRectangles">Clear all Rectangles</button>
+                    <button class="block btn btnGroup1Margin" id="newRectangle">New Rectangle</button> 
                 </div>
-                <button class="block btn btnGroup1Margin" id="removeRectangles">Clear all Rectangles</button>
-                <button class="block btn btnGroup1Margin" id="newRectangle">New Rectangle</button> 
+    
+                <div class="container">
+                    <div id="profileList"></div>    
+                </div>
+                <div class="colorSelector">
+                    <fieldset>
+                        <label for="r">R</label>
+                        <input type="range" min="0" max="255" id="r" step="1" value="0">
+                        <output for="r" id="r_out">0</output>
+                    </fieldset>  
+                    
+                    <fieldset>
+                        <label for="g">G</label>
+                        <input type="range" min="0" max="255" id="g" step="1" value="0">
+                        <output for="g" id="g_out">0</output>
+                    </fieldset>
+                    
+                    <fieldset>
+                        <label for="b">B</label>
+                        <input type="range" min="0" max="255" id="b" step="1" value="0">
+                        <output for="b" id="b_out">0</output>
+                    </fieldset>
+                </div>
             </div>
-
-            <div class="container">
-                <div id="profileList"></div>    
-            </div>
-        </div>
-
     </div>
+
+
+
 
 
 
@@ -78,6 +99,7 @@
     <script src="./assets/js/localStorage.js"></script>
     <script src="./assets/js/color-remove.js"></script>
     <script src="./assets/js/profile.js"></script>
+    <script src="./assets/js/colorSelector.js"></script>
 
 </body>
 </html>

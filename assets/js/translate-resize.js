@@ -6,7 +6,7 @@ var mousedown_points;
 function mousedown (e) {
 
     window.target = e.target;
-    if (target.className.baseVal === 'resize') {
+    if (window.target.className.baseVal === 'resize') {
         mousedown_points = {
             x: e.clientX,
             y: e.clientY
@@ -14,13 +14,15 @@ function mousedown (e) {
         document.addEventListener('mouseup', mouseup, false);
         document.addEventListener('mousemove', mousemove, false);
     }
-    else if (target.className.baseVal === 'myrect') {
+    else if (window.target.className.baseVal === 'myrect') {
       mousedown_points = {
         x: e.clientX,
         y: e.clientY
     }
-    document.addEventListener('mouseup', mouseupTranslate, false);
-    document.addEventListener('mousemove', mousemoveTranslate, false);
+        document.addEventListener('mouseup', mouseupTranslate, false);
+        document.addEventListener('mousemove', mousemoveTranslate, false);
+        handleTargetColor(e)
+        
     }
 }
 

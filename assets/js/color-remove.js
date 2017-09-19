@@ -9,13 +9,6 @@ function dblClick (e) {
   }
 }
 
-//This is a random color generator to place hold until I implement that color slider idea
-function randomColor () {
-  // let colors = ['red', 'green', 'blue', 'yellow', 'purple', 'black', 'aqua'];
-  let colors = ["AliceBlue","AntiqueWhite","Aqua","Aquamarine","Beige","Bisque","Black","BlanchedAlmond","Blue","BlueViolet","Brown","BurlyWood","CadetBlue","Chartreuse","Chocolate","Coral","CornflowerBlue","Cornsilk","Crimson","Cyan","DarkBlue","DarkCyan","DarkGoldenRod","DarkGray","DarkGrey","DarkGreen","DarkKhaki","DarkMagenta","DarkOliveGreen","Darkorange","DarkOrchid","DarkRed","DarkSalmon","DarkSeaGreen","DarkSlateBlue","DarkSlateGray","DarkSlateGrey","DarkTurquoise","DarkViolet","DeepPink","DeepSkyBlue","DimGray","DimGrey","DodgerBlue","FireBrick","FloralWhite","ForestGreen","Fuchsia","Gainsboro","GhostWhite","Gold","GoldenRod","Gray","Grey","Green","GreenYellow","HotPink","IndianRed","Indigo","Ivory","Khaki","Lavender","LawnGreen","LemonChiffon","Lime","LimeGreen","Magenta","Maroon","MediumAquaMarine","MediumBlue","MediumOrchid","MediumPurple","MediumSeaGreen","MediumSlateBlue","MediumSpringGreen","MediumTurquoise","MediumVioletRed","MidnightBlue","MintCream","MistyRose","Moccasin","NavajoWhite","Navy","OldLace","Olive","OliveDrab","Orange","OrangeRed","Orchid","PaleGoldenRod","PaleGreen","PaleTurquoise","PaleVioletRed","PapayaWhip","PeachPuff","Peru","Pink","Plum","PowderBlue","Purple","Red","RosyBrown","RoyalBlue","SaddleBrown","Salmon","SandyBrown","SeaGreen","SeaShell","Sienna","Silver","SkyBlue","SlateBlue","SlateGray","SlateGrey","SpringGreen","SteelBlue","Tan","Teal","Thistle","Tomato","Turquoise","Violet","Wheat","Yellow","YellowGreen"];
-  
-  return colors[getRandomInt(0, colors.length)];
-}
 
 //Change the fill of a color based on random color
 function colorChange (target) {
@@ -34,7 +27,7 @@ function newRectangle () {
     counter = 0
   }
   else {}
-  canvas.innerHTML += '<circle id="remove'+counter+'" class="remove" fill="#A09DA1" cx="100" cy="70" r="10"/> \n <rect id="rect'+counter+'" class="myrect" fill="black" x="100" y="70" width="100" height="100" /> \n <circle id="resize'+counter+'" class="resize" fill="#F5805D" cx="200" cy="170" r="10"/>';
+  canvas.innerHTML += '<circle id="remove'+counter+'" class="remove" fill="#A09DA1" cx="100" cy="70" r="10"/> \n <rect id="rect'+counter+'" class="myrect" fill="#000000" x="100" y="70" width="100" height="100" /> \n <circle id="resize'+counter+'" class="resize" fill="#F5805D" cx="200" cy="170" r="10"/>';
   let intCounter = parseInt(counter)
   intCounter += 1
   localStorage.setItem('counter', intCounter)
