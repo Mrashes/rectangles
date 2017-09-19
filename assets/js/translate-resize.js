@@ -1,4 +1,5 @@
 //This is the svg shape Resizer and translator
+//Used http://jsfiddle.net/sv66bxee/ for inspiration
 document.addEventListener('mousedown', mousedown, false);
 
 var mousedown_points;
