@@ -10,13 +10,6 @@ function dblClick (e) {
 }
 
 
-//Change the fill of a color based on random color
-function colorChange (target) {
-  color = randomColor();
-  var rect= document.getElementById(target.id);
-  rect.setAttribute('fill', color);
-}
-
 //This function adds new rectangle to the canvas
 function newRectangle () {
   let canvas = document.getElementById('mycanvas');

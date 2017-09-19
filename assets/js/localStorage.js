@@ -31,9 +31,18 @@ function localProfilePost (newProfile) {
     }
 }
 
+//If a profile name is reused add a random number to it
 function noDoubles (currentProfiles, newProfile) {
     let index = currentProfiles.indexOf(newProfile);
-    currentProfiles.push(newProfile+"Other");
+    let counter = localStorage.getItem('counter')
+    if (counter === null) {
+        counter = 0
+      }
+    currentProfiles.push(newProfile+counter);
+    //turn counter into int
+    let intCounter = parseInt(counter)
+    intCounter += 1
+    localStorage.setItem('counter', intCounter)
     localStorage.setItem('rectangleProfile', currentProfiles.join(' '));
     return;
 }

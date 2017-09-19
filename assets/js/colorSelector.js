@@ -8,10 +8,18 @@ function randomColor () {
   }
 
 
+//Change the fill of a color based on random color
+function colorChange (target) {
+    color = randomColor();
+    var rect= document.getElementById(target.id);
+    rect.setAttribute('fill', color);
+}
+
 function handleTargetColor (event) {
     if (window.targetColor === undefined) {
         window.targetColor = event.target;
         document.getElementById(targetColor.id).setAttribute('rx', 10);
+        document.getElementById('colorSelector').style.display = 'block';
         return;
     }
     else {
@@ -20,8 +28,10 @@ function handleTargetColor (event) {
         document.getElementById(targetColor.id).setAttribute('rx', 10);
         return;
     }
+}
 
-    
+function showColorChange() {
+    document.getElementById(targetColor.id).style.display = 'block';
 }
 
 // for reference, I yonked this from https://codepen.io/leemark/pen/lpEHr
