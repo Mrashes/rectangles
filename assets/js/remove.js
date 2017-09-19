@@ -15,7 +15,8 @@ function newRectangle () {
   let canvas = document.getElementById('mycanvas');
   //I use to use the number of children at the indicator but have to switch to a global counter for bug reasons
   // let children = String(canvas.children.length/3)
-  let counter = localStorage.getItem("counter")
+  let counter
+  try {counter = localStorage.getItem("counter")} catch(e){counter = null; console.log(e)} 
   if (counter === null) {
     counter = 0
   }
@@ -23,7 +24,10 @@ function newRectangle () {
   canvas.innerHTML += '<circle id="remove'+counter+'" class="remove" fill="#A09DA1" cx="100" cy="70" r="10"/> \n <rect id="rect'+counter+'" class="myrect" fill="#000000" x="100" y="70" width="100" height="100" /> \n <circle id="resize'+counter+'" class="resize" fill="#F5805D" cx="200" cy="170" r="10"/>';
   let intCounter = parseInt(counter)
   intCounter += 1
-  localStorage.setItem('counter', intCounter)
+  try {localStorage.setItem('counter', intCounter)} catch (e) {
+    console.log(e)
+  }
+  
   return localManipulation(document.getElementById('currentProfile').textContent)
 }
 

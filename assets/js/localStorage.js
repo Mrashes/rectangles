@@ -1,9 +1,16 @@
 //returns all profiles stored in the localstorage
 function localGetProfiles () {
-    let profiles = localStorage.getItem("rectangleProfile");
+    let profiles
+    try {
+        profiles = localStorage.getItem("rectangleProfile")
+    } catch (e) {
+        console.log(e)
+        profiles = null;
+    }
+    
     if (profiles === null || profiles === [""]) {
         console.log(Error)
-        return
+        return profiles
     }
     else {
         return profiles.split(' ');
@@ -13,11 +20,18 @@ function localGetProfiles () {
 
 //adding new profiles into the localstorage.  If there isn't one already the space is ommitted
 function localProfilePost (newProfile) {
-    let currentProfiles = localGetProfiles();
+    let currentProfiles;
+    try{currentProfiles = localGetProfiles();} catch(e) {currentProfiles = [""]; console.log(e)}
+    console.log(currentProfiles)
 
     if (currentProfiles === null || currentProfiles === [""] || currentProfiles === undefined) {
         currentProfiles = newProfile
-        localStorage.setItem('rectangleProfile', currentProfiles)
+        try {
+            localStorage.setItem('rectangleProfile', currentProfiles)
+        } catch (e) {
+            console.log(e)
+        }
+        
         return;
     }
     else if (currentProfiles.indexOf(newProfile) !== -1) {
@@ -50,9 +64,15 @@ function noDoubles (currentProfiles, newProfile) {
 //adding html into a rectangleProfilename local storage area
 function localManipulation (Profilename) {
     let canvas = document.getElementById('mycanvas');
-    let children = canvas.children.length;
+    // try {
+    //     let children = canvas.children.length;
+    // } catch (e) {
+    //     console.log(e)
+    // }
+    
     let html = canvas.innerHTML
-    return localStorage.setItem("rectangle"+Profilename, html);
+    try {localStorage.setItem("rectangle"+Profilename, html);} catch(e) {console.log(e)}
+    return
 }
 
 function localLoadHTML (Profilename) {

@@ -5,8 +5,10 @@ document.addEventListener('mousedown', mousedown, false);
 var mousedown_points;
 //On mouse down check what the mouse down is on
 function mousedown (e) {
-
+    //This allows for access in all the listeners.
     window.target = e.target;
+    //If you clicked resize do resize listeners
+    //I chose to do class name here as the id's are all unique but I can make the class the same
     if (window.target.className.baseVal === 'resize') {
         mousedown_points = {
             x: e.clientX,
@@ -15,6 +17,7 @@ function mousedown (e) {
         document.addEventListener('mouseup', mouseup, false);
         document.addEventListener('mousemove', mousemove, false);
     }
+    //if you clicked rectangle do those listeners
     else if (window.target.className.baseVal === 'myrect') {
       mousedown_points = {
         x: e.clientX,
@@ -22,8 +25,8 @@ function mousedown (e) {
     }
         document.addEventListener('mouseup', mouseupTranslate, false);
         document.addEventListener('mousemove', mousemoveTranslate, false);
+        //found in colorSelector
         handleTargetColor(e)
-        
     }
 }
 
