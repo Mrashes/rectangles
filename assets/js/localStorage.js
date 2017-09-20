@@ -22,7 +22,6 @@ function localGetProfiles () {
 function localProfilePost (newProfile) {
     let currentProfiles;
     try{currentProfiles = localGetProfiles();} catch(e) {currentProfiles = [""]; console.log(e)}
-    console.log(currentProfiles)
 
     if (currentProfiles === null || currentProfiles === [""] || currentProfiles === undefined) {
         currentProfiles = newProfile
