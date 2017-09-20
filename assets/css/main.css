@@ -112,7 +112,11 @@ body {
 
 .profileName {
     justify-content: center;
-    margin-bottom:1em
+    margin-bottom:1em;
+}
+
+.profileSubmit {
+    margin-left: 10px;
 }
 
 .trashcan {
@@ -159,4 +163,10 @@ body {
     font-style: italic; 
     margin-top: 1em;
     font-family: 'Roboto Slab', serif;
+}
+
+.svgStyle {
+    border: 2px solid;
+    width: 800px;
+    background-color:white;
 }

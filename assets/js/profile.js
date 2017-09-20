@@ -26,14 +26,7 @@ function populateProfiles () {
     localProfiles = localGetProfiles();
     let profileDOM = document.getElementById('profileList');
     profileDOM.innerHTML = "";
-    // try {
-    //     localProfiles[0]
-    // } catch (e) {
-    //     consol
-    // }
-
-    console.log(localProfiles)
-
+ 
     if (localProfiles === undefined || localProfiles === null) {
         return;
     }
@@ -120,8 +113,6 @@ function removeProfile (targetProfile) {
     profileList.splice(profileIndex, 1);
     localStorage.setItem("rectangleProfile", profileList.join(' '));
     populateProfiles();
-
-    // localStorage.getItem("rectangle" + Profilename)
 }
 
 //on load make 2 listeners and populate the list

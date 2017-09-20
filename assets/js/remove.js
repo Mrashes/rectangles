@@ -14,7 +14,6 @@ function dblClick (e) {
 function newRectangle () {
   let canvas = document.getElementById('mycanvas');
   //I use to use the number of children at the indicator but have to switch to a global counter for bug reasons
-  // let children = String(canvas.children.length/3)
   let counter
   try {counter = localStorage.getItem("counter")} catch(e){counter = null; console.log(e)} 
   if (counter === null) {

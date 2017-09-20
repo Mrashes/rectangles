@@ -64,12 +64,6 @@ function noDoubles (currentProfiles, newProfile) {
 //adding html into a rectangleProfilename local storage area
 function localManipulation (Profilename) {
     let canvas = document.getElementById('mycanvas');
-    // try {
-    //     let children = canvas.children.length;
-    // } catch (e) {
-    //     console.log(e)
-    // }
-    
     let html = canvas.innerHTML
     try {localStorage.setItem("rectangle"+Profilename, html);} catch(e) {console.log(e)}
     return
